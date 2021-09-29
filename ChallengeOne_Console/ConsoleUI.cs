@@ -378,7 +378,45 @@ namespace ChallengeOne_Console
         // Delete existing menu item
         public void Menu_Delete()
         {
+            bool keepLooping = true;
+            while (keepLooping)
+            {
+                Console.Clear();
+                PrintTitle("Existing menu items:");
 
+                PrintMenuItemsInList(_menuItemRepo.GetAllMenuItems());
+
+                Console.WriteLine("\n" + _dashes + "\n\nEnter a meal number to delete item " +
+                    "or press enter to return to the main menu:\n");
+                string response = Console.ReadLine();
+
+                switch (response)
+                {
+                    case "":
+                        // Return to main menu
+                        return;
+                    default:
+                        try
+                        {
+                            int mealNumber = int.Parse(response.Trim());
+                            bool success = _menuItemRepo.DeleteMenuItemForMealNumber(mealNumber);
+                            if (success)
+                            {
+                                Console.WriteLine($"\nMenu item was successfully deleted. Press any key to continue.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nMenu item could not be deleted at this time. Press any key to continue.");
+                            }
+                            Console.ReadLine();
+                        }
+                        catch
+                        {
+                            PrintErrorMessageForInput(response);
+                        }
+                        break;
+                }
+            }
         }
 
 

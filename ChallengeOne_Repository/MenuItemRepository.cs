@@ -135,8 +135,9 @@ namespace ChallengeOne_Repository
         }
 
         // Delete
-        public bool DeleteMenuItem(MenuItem item)
+        public bool DeleteMenuItemForMealNumber(int mealNumber)
         {
+            MenuItem item = GetMenuItemForMealNumber(mealNumber);
             if(item is null || _listOfMenuItems.Count == 0)
             {
                 return false;
