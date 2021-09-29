@@ -72,5 +72,32 @@ namespace ChallengeOne_Repository
             return false;
         }
 
+        public bool RemoveIngredient(string ingredientToDelete)
+        {
+            // Make sure that the ingredient actually exists
+
+            if (ingredientToDelete is null || ingredientToDelete == "")
+            {
+                return false;
+            }
+
+            foreach (string ingredient in Ingredients)
+            {
+                if (ingredient.ToLower().Equals(ingredientToDelete.ToLower()))
+                {
+                    int before = Ingredients.Count();
+                    Ingredients.Remove(ingredientToDelete.ToLower());
+                    int after = Ingredients.Count();
+
+                    if (before > after)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
     }
 }

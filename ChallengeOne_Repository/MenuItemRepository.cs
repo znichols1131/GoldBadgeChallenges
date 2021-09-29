@@ -9,7 +9,7 @@ namespace ChallengeOne_Repository
     public class MenuItemRepository
     {
         private List<MenuItem> _listOfMenuItems = new List<MenuItem>();
-        private int _nextMealNumber = 0;
+        private int _nextMealNumber = 1; // Don't want a menu number of 0, nobody says "I'll have a number 0"
 
         // Create
         public bool CreateMenuItem(MenuItem item)
@@ -101,6 +101,32 @@ namespace ChallengeOne_Repository
             bool success = oldItem.AddIngredient(newIngredient);
 
             if(success)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool RemoveIngredientFromMealNumber(int mealNumber, string ingredientToDelete)
+        {
+            // Use this method to remove an ingredient to an existing MenuItem.
+            // Using this triggers the MenuItem's method that checks for existing ingredients.
+
+            if (mealNumber < 0 || ingredientToDelete is null || ingredientToDelete == "")
+            {
+                return false;
+            }
+
+            MenuItem oldItem = GetMenuItemForMealNumber(mealNumber);
+            if (oldItem is null)
+            {
+                return false;
+            }
+
+            bool success = oldItem.RemoveIngredient(ingredientToDelete);
+
+            if (success)
             {
                 return true;
             }
