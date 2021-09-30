@@ -20,7 +20,7 @@ namespace ChallengeOne_Console
         }
 
         // Dummy data
-        public void Populate()
+        private void Populate()
         {
             List<string> ingredientListOne = new List<string>();
             ingredientListOne.Add("buns");
@@ -45,7 +45,7 @@ namespace ChallengeOne_Console
         }
 
         // Main menu
-        public void Run_MainMenu()
+        private void Run_MainMenu()
         {
             bool keepLooping = true;
             while(keepLooping)
@@ -85,7 +85,7 @@ namespace ChallengeOne_Console
         }
 
         // Create menu item
-        public void Menu_Create()
+        private void Menu_Create()
         {
             Console.Clear();
             PrintTitle("Creating new menu items:");
@@ -107,7 +107,7 @@ namespace ChallengeOne_Console
             }
         }
 
-        public MenuItem AskUser_MenuInformation()
+        private MenuItem AskUser_MenuInformation()
         {
             Console.Write("Step 1 of 4: ");
             string mealName = AskUser_MealName();
@@ -136,7 +136,7 @@ namespace ChallengeOne_Console
             return newItem;
         }
 
-        public string AskUser_MealName()
+        private string AskUser_MealName()
         {
             // Get meal name
             Console.WriteLine("Enter a name for the meal:");
@@ -150,7 +150,7 @@ namespace ChallengeOne_Console
             return mealName;
         }
 
-        public string AskUser_MealDescription()
+        private string AskUser_MealDescription()
         {
             // Get meal description
             Console.WriteLine("Enter a description for the meal:");
@@ -164,7 +164,7 @@ namespace ChallengeOne_Console
             return mealDescription;
         }
 
-        public List<string> AskUser_Ingredients()
+        private List<string> AskUser_Ingredients()
         {
             // Get ingredients
             Console.WriteLine("Enter all ingredients separated by commas:");
@@ -183,7 +183,7 @@ namespace ChallengeOne_Console
             return ingredients;
         }
 
-        public double AskUser_Price()
+        private double AskUser_Price()
         {
             // Get price
             Console.WriteLine("Enter a price for the meal (in dollars):");
@@ -211,7 +211,7 @@ namespace ChallengeOne_Console
         }
 
         // Update existing menu item
-        public void Menu_ViewOrUpdate_All()
+        private void Menu_ViewOrUpdate_All()
         {
             bool keepLooping = true;
             while (keepLooping)
@@ -245,7 +245,7 @@ namespace ChallengeOne_Console
             }
         }
 
-        public void Menu_ViewOrUpdate_Specific(int mealNumber)
+        private void Menu_ViewOrUpdate_Specific(int mealNumber)
         {
             MenuItem item = _menuItemRepo.GetMenuItemForMealNumber(mealNumber);
             if(item is null)
@@ -376,7 +376,7 @@ namespace ChallengeOne_Console
         }
 
         // Delete existing menu item
-        public void Menu_Delete()
+        private void Menu_Delete()
         {
             bool keepLooping = true;
             while (keepLooping)
@@ -421,7 +421,7 @@ namespace ChallengeOne_Console
 
 
         // Helper methods (if any)
-        public void PrintLogo()
+        private void PrintLogo()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(" __  ___   ______    .___  ___.   ______    _______   ______   ");
@@ -433,18 +433,18 @@ namespace ChallengeOne_Console
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public void PrintTitle(string title)
+        private void PrintTitle(string title)
         {
             Console.WriteLine(title + "\n\n" + _dashes + "\n");
         }
-        
-        public void PrintErrorMessageForInput(string input)
+
+        private void PrintErrorMessageForInput(string input)
         {
             Console.WriteLine($"\nWe're sorry, '{input}' is not a valid input. Please try again.");
             Console.ReadLine();
         }
 
-        public void PrintMenuItemsInList(List<MenuItem> listOfItems)
+        private void PrintMenuItemsInList(List<MenuItem> listOfItems)
         {
             if(listOfItems is null || listOfItems.Count == 0)
             {
@@ -462,7 +462,7 @@ namespace ChallengeOne_Console
             }
         }
 
-        public bool InterpretYesNoInput(string input)
+        private bool InterpretYesNoInput(string input)
         {
             if(input is null || input == "")
             {
@@ -477,7 +477,7 @@ namespace ChallengeOne_Console
             return false;
         }
 
-        public bool ValidateStringResponse(string response, bool required)
+        private bool ValidateStringResponse(string response, bool required)
         {
             if(response is null)
             {
@@ -492,7 +492,7 @@ namespace ChallengeOne_Console
             return true;
         }
 
-        public List<string> SplitStringIntoIngredients(string input)
+        private List<string> SplitStringIntoIngredients(string input)
         {
             if(input is null || input == "")
             {
@@ -516,7 +516,7 @@ namespace ChallengeOne_Console
 
         }
 
-        public void UpdateMenuItem(int mealNumber, MenuItem newItem)
+        private void UpdateMenuItem(int mealNumber, MenuItem newItem)
         {
             if(newItem is null)
             {

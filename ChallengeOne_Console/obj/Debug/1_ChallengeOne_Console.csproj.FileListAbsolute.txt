@@ -1,0 +1,10 @@
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\bin\Debug\ChallengeOne_Console.exe.config
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\bin\Debug\ChallengeOne_Console.exe
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\bin\Debug\ChallengeOne_Console.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\bin\Debug\ChallengeOne_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\bin\Debug\ChallengeOne_Repository.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\obj\Debug\1_ChallengeOne_Console.csproj.AssemblyReference.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\obj\Debug\1_ChallengeOne_Console.csproj.CoreCompileInputs.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\obj\Debug\1_ChallengeOne_Console.csproj.CopyComplete
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\obj\Debug\ChallengeOne_Console.exe
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\ChallengeOne_Console\obj\Debug\ChallengeOne_Console.pdb
