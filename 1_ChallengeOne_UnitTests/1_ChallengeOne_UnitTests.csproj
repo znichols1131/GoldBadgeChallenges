@@ -56,7 +56,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChallengeOne_Repository\1_ChallengeOne_Repository.csproj">
+    <ProjectReference Include="..\1_ChallengeOne_Repository\1_ChallengeOne_Repository.csproj">
       <Project>{80a2820b-0763-4172-8848-d5b75d8f11be}</Project>
       <Name>1_ChallengeOne_Repository</Name>
     </ProjectReference>
