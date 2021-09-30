@@ -57,8 +57,8 @@ namespace ChallengeOne_Console
                 PrintTitle("Welcome to Komodo Cafe's menu management tool. What would you like to do?");
 
                 Console.WriteLine("1. Create a new menu item.\n" +
-                    "2. View or update an existing menu item.\n" +
-                    "3. Delete a new menu item.\n" +
+                    "2. View or update existing menu items.\n" +
+                    "3. Delete a menu item.\n" +
                     "4. Quit.\n");
                 string response = Console.ReadLine();
 
@@ -423,7 +423,7 @@ namespace ChallengeOne_Console
         // Helper methods (if any)
         private void PrintLogo()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(" __  ___   ______    .___  ___.   ______    _______   ______   ");
             Console.WriteLine("|  |/  /  /  __  \\   |   \\/   |  /  __  \\  |       \\ /  __  \\  ");
             Console.WriteLine("|  '  /  |  |  |  |  |  \\  /  | |  |  |  | |  .--.  |  |  |  | ");
@@ -452,9 +452,14 @@ namespace ChallengeOne_Console
             }
             else
             {
-                foreach(MenuItem item in listOfItems)
+                Console.WriteLine("{0,-10}{1,-25}{2,-10}\n",
+                        "Meal #",
+                        "Meal Name",
+                        "Price");
+
+                foreach (MenuItem item in listOfItems)
                 {
-                    Console.WriteLine("{0,-10}{1,-25}{2,-10}",
+                    Console.WriteLine("{0,-10}{1,-25}${2,-10}",
                         item.MealNumber,
                         item.MealName,
                         item.Price);

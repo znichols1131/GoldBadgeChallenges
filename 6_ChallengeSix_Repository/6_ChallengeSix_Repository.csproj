@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CarRepository.cs" />
+    <Compile Include="ElectricCar.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="GasCar.cs" />
+    <Compile Include="HybridCar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

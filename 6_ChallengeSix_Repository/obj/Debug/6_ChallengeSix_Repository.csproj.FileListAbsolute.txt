@@ -1,0 +1,6 @@
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Repository\bin\Debug\6_ChallengeSix_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Repository\bin\Debug\6_ChallengeSix_Repository.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Repository\obj\Debug\6_ChallengeSix_Repository.csproj.AssemblyReference.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Repository\obj\Debug\6_ChallengeSix_Repository.csproj.CoreCompileInputs.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Repository\obj\Debug\6_ChallengeSix_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Repository\obj\Debug\6_ChallengeSix_Repository.pdb

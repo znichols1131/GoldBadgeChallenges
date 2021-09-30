@@ -5,3 +5,6 @@ C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_Challen
 C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Console\obj\Debug\6_ChallengeSix_Console.csproj.CoreCompileInputs.cache
 C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Console\obj\Debug\6_ChallengeSix_Console.exe
 C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Console\obj\Debug\6_ChallengeSix_Console.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Console\bin\Debug\6_ChallengeSix_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Console\bin\Debug\6_ChallengeSix_Repository.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_Console\obj\Debug\6_ChallengeSix_Console.csproj.CopyComplete
