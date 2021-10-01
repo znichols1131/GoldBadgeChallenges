@@ -8,13 +8,7 @@ namespace _6_ChallengeSix_Repository
 {
     public class HybridCar : Car
     {
-        // Parent class properties
-        public int CarID { get; set; }
-        public string Make { get; set; }
-        public string Model { get; set; }
-        public int Year { get; set; }
-        public FuelType Fuel { get; set; }
-        public double CostToMake { get; set; }
+        // Parent class properties are in Car class
 
         // Unique properties
         public double MilesPerKWH { get; set; }

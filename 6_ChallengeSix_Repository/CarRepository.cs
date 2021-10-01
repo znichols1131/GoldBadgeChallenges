@@ -19,7 +19,7 @@ namespace _6_ChallengeSix_Repository
                 return false;
             }
 
-            // Keep meal numbers unique
+            // Keep car IDs unique
             car.CarID = _nextCarNumber;
             _nextCarNumber++;
 

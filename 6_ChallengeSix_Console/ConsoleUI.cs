@@ -22,7 +22,22 @@ namespace _6_ChallengeSix_Console
         // Dummy data
         private void Populate()
         {
-            
+            ElectricCar eCar = new ElectricCar("Tesla", "Model S", 2021, 90000.00);
+            eCar.MilesPerKWH = 3.678956d;
+            eCar.Capacity_KWH = 110.085578626d;
+            _carRepo.CreateCar(eCar);
+
+            GasCar gCar = new GasCar("Hyundai", "Tucson", 2016, 14500.00);
+            gCar.MilesPerGallon = 26.0d;
+            gCar.Capacity_Gallons = 16.4d;
+            _carRepo.CreateCar(gCar);
+
+            HybridCar hCar = new HybridCar("Ford", "Fusion", 2019, 23000);
+            hCar.MilesPerKWH = 2.77777777778d;
+            hCar.MilesPerGallon = 23.0d;
+            hCar.Capacity_KWH = 9.0d;
+            hCar.Capacity_Gallons = 16.5d;
+            _carRepo.CreateCar(hCar);
         }
 
         // Main menu
@@ -35,7 +50,7 @@ namespace _6_ChallengeSix_Console
                 PrintLogo();
 
                 Console.WriteLine("\n");
-                PrintTitle("Welcome to Komodo's GreenPlan tool. What would you like to do?");
+                PrintTitle("Welcome to Komodo's Green Plan tool. What would you like to do?");
 
                 Console.WriteLine("1. Create a new car.\n" +
                     "2. View or update existing cars.\n" +
@@ -49,10 +64,10 @@ namespace _6_ChallengeSix_Console
                         Menu_Create();
                         break;
                     case "2":
-
+                        Menu_ViewOrUpdate_All();
                         break;
                     case "3":
-                                                
+                        Menu_Delete();
                         break;
                     case "4":
                         // Quit
@@ -94,6 +109,7 @@ namespace _6_ChallengeSix_Console
             FuelType fuel = AskUser_FuelType();
             if (fuel == FuelType.Null) { return null; }
 
+            Console.WriteLine();
             Console.Write("Step 2 of 7: ");
             string make = AskUser_Make();
             if (make is null) { return null; }
@@ -152,13 +168,13 @@ namespace _6_ChallengeSix_Console
 
                     Console.Write("\nStep 6 of 7: ");
                     double[] mileages = AskUser_Mileages(fuel);
-                    if (mileages.Length < 2) { return null; }
+                    if (mileages is null || mileages.Length < 2) { return null; }
                     ((HybridCar)newCar).MilesPerKWH = mileages[0];
                     ((HybridCar)newCar).MilesPerGallon = mileages[1];
 
                     Console.Write("\nStep 7 of 7: ");
                     double[] capacities = AskUser_Capacities(fuel);
-                    if (capacities.Length < 2) { return null; }
+                    if (capacities is null || capacities.Length < 2) { return null; }
                     ((HybridCar)newCar).Capacity_KWH = capacities[0];
                     ((HybridCar)newCar).Capacity_Gallons = capacities[1];
 
@@ -401,7 +417,7 @@ namespace _6_ChallengeSix_Console
 
                 Console.WriteLine("{0,-20}{1,-20}", $"Car ID:", car.CarID);
                 Console.WriteLine("{0,-20}{1,-20}", $"Make:", car.Make);
-                Console.WriteLine("{0,-20}{1,-20}", $"Model:", car.Model);
+                Console.WriteLine("{0,-20}{1,-20}", "Model:", car.Model);
                 Console.WriteLine("{0,-20}{1,-20}", "Year:", car.Year);
 
                 switch (car.Fuel)
@@ -420,28 +436,28 @@ namespace _6_ChallengeSix_Console
                         break;
                 }
 
-                Console.WriteLine("{0,-20}${1,-20}", "Production Cost:", car.CostToMake);
+                Console.WriteLine("{0,-20}${1,-20:0,0.00}", "Production Cost:", car.CostToMake);
 
                 switch (car.Fuel)
                 {
                     case FuelType.Electric:
-                        Console.WriteLine("{0,-20}{1,-20}", "Electric Specs:", "");
-                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", $"{((ElectricCar)car).MilesPerKWH} miles/kWh");
-                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", $"{((ElectricCar)car).Capacity_KWH} kWh");
+                        Console.WriteLine("{0,-20}{1,-20}", "Electric Specs", "");
+                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", String.Format("{0:0.00}", ((ElectricCar)car).MilesPerKWH) + " miles/kWh");
+                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", String.Format("{0:0.0}", ((ElectricCar)car).Capacity_KWH) + " kWh");
                         break;
                     case FuelType.GasPowered:
-                        Console.WriteLine("{0,-20}{1,-20}", "Gas Specs:", "");
-                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", $"{((GasCar)car).MilesPerGallon} miles/gallon");
-                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", $"{((GasCar)car).Capacity_Gallons} gallons");
+                        Console.WriteLine("{0,-20}{1,-20}", "Gas Specs", "");
+                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", String.Format("{0:0.00}", ((GasCar)car).MilesPerGallon) + " miles/gallon");
+                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", String.Format("{0:0.0}",((GasCar)car).Capacity_Gallons) + " gallons");
                         break;
                     case FuelType.Hybrid:
-                        Console.WriteLine("{0,-20}{1,-20}", "Electric Specs:", "");
-                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", $"{((HybridCar)car).MilesPerKWH} miles/kWh");
-                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", $"{((HybridCar)car).Capacity_KWH} kWh");
+                        Console.WriteLine("{0,-20}{1,-20}", "Electric Specs", "");
+                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", String.Format("{0:0.00}", ((HybridCar)car).MilesPerKWH) + " miles/kWh");
+                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", String.Format("{0:0.0}", ((HybridCar)car).Capacity_KWH) + " kWh");
                         Console.WriteLine();
                         Console.WriteLine("{0,-20}{1,-20}", "Gas Specs:", "");
-                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", $"{((HybridCar)car).MilesPerGallon} miles/gallon");
-                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", $"{((HybridCar)car).Capacity_Gallons} gallons");
+                        Console.WriteLine("{0,-20}{1,-20}", "Mileage:", String.Format("{0:0.00}",((HybridCar)car).MilesPerGallon) + " miles/gallon");
+                        Console.WriteLine("{0,-20}{1,-20}", "Fuel Capacity:", String.Format("{0:0.0}", ((HybridCar)car).Capacity_Gallons) + " gallons");
                         break;
                     default:
                         Console.WriteLine("{0,-20}{1,-20}", "Fuel Specs:", "N/A");
@@ -503,7 +519,7 @@ namespace _6_ChallengeSix_Console
                     case "5":
                         // Update mileages
                         double[] mileages = AskUser_Mileages(car.Fuel);
-                        if (!(mileages.Length < 0))
+                        if (!(mileages is null) && !(mileages.Length < 0))
                         {
                             // Handle properties unique to each car type
                             switch (car.Fuel)
@@ -537,7 +553,7 @@ namespace _6_ChallengeSix_Console
                         // Update capacities
                         // Update mileages
                         double[] capacities = AskUser_Capacities(car.Fuel);
-                        if (!(capacities.Length < 0))
+                        if (!(capacities is null) && !(capacities.Length < 0))
                         {
                             // Handle properties unique to each car type
                             switch (car.Fuel)
@@ -578,6 +594,50 @@ namespace _6_ChallengeSix_Console
         }
 
 
+        // Delete existing menu item
+        private void Menu_Delete()
+        {
+            bool keepLooping = true;
+            while (keepLooping)
+            {
+                Console.Clear();
+                PrintTitle("Existing cars:");
+
+                PrintCarsInList(_carRepo.GetAllCars());
+
+                Console.WriteLine("\n" + _dashes + "\n\nEnter a car ID to delete car " +
+                    "or press enter to return to the main menu:\n");
+                string response = Console.ReadLine();
+
+                switch (response)
+                {
+                    case "":
+                        // Return to main menu
+                        return;
+                    default:
+                        try
+                        {
+                            int carID = int.Parse(response.Trim());
+                            bool success = _carRepo.DeleteCarForID(carID);
+
+                            if (success)
+                            {
+                                Console.WriteLine($"\nCar was successfully deleted. Press any key to continue.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nCar could not be deleted at this time. Press any key to continue.");
+                            }
+                            Console.ReadLine();
+                        }
+                        catch
+                        {
+                            PrintErrorMessageForInput(response);
+                        }
+                        break;
+                }
+            }
+        }
 
 
         // Helper methods (if any)
@@ -612,7 +672,7 @@ namespace _6_ChallengeSix_Console
             }
             else
             {
-                Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-5}${4,-15}",
+                Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-10}${4,-15}",
                         "ID",
                         "Make",
                         "Model",
@@ -621,7 +681,7 @@ namespace _6_ChallengeSix_Console
 
                 foreach (Car car in carList)
                 {
-                    Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-5}${4,-15}",
+                    Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-10}${4,-15:0,0.00}",
                         car.CarID,
                         car.Make,
                         car.Model,

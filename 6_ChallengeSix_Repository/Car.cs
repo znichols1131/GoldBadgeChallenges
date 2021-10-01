@@ -16,12 +16,12 @@ namespace _6_ChallengeSix_Repository
 
     public abstract class Car
     {
-        public int CarID;
-        public string Make;
-        public string Model;
-        public int Year;
-        public FuelType Fuel;
-        public double CostToMake;
+        public int CarID { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public FuelType Fuel { get; set; }
+        public double CostToMake { get; set; }
 
         public abstract double AverageCostPerMile(double[] dollarsPerFuel);
         public abstract double FuelRange();
