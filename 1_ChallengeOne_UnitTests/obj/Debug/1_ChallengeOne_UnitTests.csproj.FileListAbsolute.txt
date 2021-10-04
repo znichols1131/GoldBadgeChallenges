@@ -1,0 +1,2 @@
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\1_ChallengeOne_UnitTests\obj\Debug\ChallengeOne_UnitTests.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\1_ChallengeOne_UnitTests\obj\Debug\ChallengeOne_UnitTests.pdb

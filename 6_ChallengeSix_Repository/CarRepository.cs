@@ -73,15 +73,8 @@ namespace _6_ChallengeSix_Repository
                 return false;
             }
 
-            oldCar.CarID = newCar.CarID;
-            oldCar.Make = newCar.Make;
-            oldCar.Model = newCar.Model;
-            oldCar.Year = newCar.Year;
-            oldCar.Fuel = newCar.Fuel;
-            oldCar.CostToMake = newCar.CostToMake;
-
             // Handle any properties unique to fuel type
-            switch(oldCar.Fuel)
+            switch (oldCar.Fuel)
             {
                 case FuelType.Electric:
                     ((ElectricCar)oldCar).MilesPerKWH = ((ElectricCar)newCar).MilesPerKWH;
@@ -100,6 +93,13 @@ namespace _6_ChallengeSix_Repository
                 default:
                     return false;
             }
+
+            oldCar.CarID = newCar.CarID;
+            oldCar.Make = newCar.Make;
+            oldCar.Model = newCar.Model;
+            oldCar.Year = newCar.Year;
+            oldCar.Fuel = newCar.Fuel;
+            oldCar.CostToMake = newCar.CostToMake;            
 
             return true;
         }

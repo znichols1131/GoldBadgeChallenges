@@ -1,0 +1,16 @@
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\6_ChallengeSix_UnitTests.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\6_ChallengeSix_UnitTests.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\6_ChallengeSix_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\6_ChallengeSix_Repository.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\obj\Debug\6_ChallengeSix_UnitTests.csproj.AssemblyReference.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\obj\Debug\6_ChallengeSix_UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\obj\Debug\6_ChallengeSix_UnitTests.csproj.CopyComplete
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\obj\Debug\6_ChallengeSix_UnitTests.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\6_ChallengeSix_UnitTests\obj\Debug\6_ChallengeSix_UnitTests.pdb

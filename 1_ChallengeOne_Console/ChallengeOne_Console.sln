@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6_ChallengeSix_Console", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6_ChallengeSix_Repository", "..\6_ChallengeSix_Repository\6_ChallengeSix_Repository.csproj", "{D56FE289-912E-4862-A714-4A945F6C504F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6_ChallengeSix_UnitTests", "..\6_ChallengeSix_UnitTests\6_ChallengeSix_UnitTests.csproj", "{A28CE7C2-8A9B-411A-BB21-D4F1BA0ECD8B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_ChallengeOne_Repository", "..\1_ChallengeOne_Repository\1_ChallengeOne_Repository.csproj", "{80A2820B-0763-4172-8848-D5B75D8F11BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_ChallengeOne_UnitTests", "..\1_ChallengeOne_UnitTests\1_ChallengeOne_UnitTests.csproj", "{06BC47FC-4072-4C3D-A661-BEAAAACBAD57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6_ChallengeSix_UnitTests", "..\6_ChallengeSix_UnitTests\6_ChallengeSix_UnitTests.csproj", "{3A48160E-1E7E-4BA2-92E0-A668E286B0CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		{D56FE289-912E-4862-A714-4A945F6C504F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D56FE289-912E-4862-A714-4A945F6C504F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D56FE289-912E-4862-A714-4A945F6C504F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A28CE7C2-8A9B-411A-BB21-D4F1BA0ECD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A28CE7C2-8A9B-411A-BB21-D4F1BA0ECD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A28CE7C2-8A9B-411A-BB21-D4F1BA0ECD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A28CE7C2-8A9B-411A-BB21-D4F1BA0ECD8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{80A2820B-0763-4172-8848-D5B75D8F11BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{80A2820B-0763-4172-8848-D5B75D8F11BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80A2820B-0763-4172-8848-D5B75D8F11BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{06BC47FC-4072-4C3D-A661-BEAAAACBAD57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06BC47FC-4072-4C3D-A661-BEAAAACBAD57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06BC47FC-4072-4C3D-A661-BEAAAACBAD57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A48160E-1E7E-4BA2-92E0-A668E286B0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A48160E-1E7E-4BA2-92E0-A668E286B0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A48160E-1E7E-4BA2-92E0-A668E286B0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A48160E-1E7E-4BA2-92E0-A668E286B0CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

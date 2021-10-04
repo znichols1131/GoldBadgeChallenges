@@ -106,7 +106,7 @@ namespace ChallengeOne_UnitTests
         }
 
         [TestMethod]
-        public void UpdateMenuItemForMealNumber_ItemExists_ReturnTrue()
+        public void UpdateMenuItemForMealNumber_NewItemIsNull_ReturnFalse()
         {
             // Arrange
             int mealNumber = 1;
@@ -116,7 +116,7 @@ namespace ChallengeOne_UnitTests
             bool success = _repo.UpdateMenuItemForMealNumber(mealNumber, newItem);
 
             // Assert
-            Assert.IsFalse(success);
+            Assert.IsTrue(success);
         }
 
         [TestMethod]

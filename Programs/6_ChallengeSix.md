@@ -22,6 +22,8 @@ Some neat features that I added:
 
 - I built out the `Car` class and its subclasses so that they have methods to return the average cost per mile and the total fuel range. This could aid future developers in completing the car comparison calculations mentioned in the assignment prompt.
 
+- The update method ensure that the car is of the same fuel type.
+
 ## Resources
 
 - [GitHub Repository](https://github.com/znichols1131/GoldBadgeChallenges)
