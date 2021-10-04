@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace ChallengeOne_UnitTests
+namespace _1_ChallengeOne_UnitTests
 {
     [TestClass]
-    public class MenuItemRepositoryTests
+    public class UnitTest1
     {
         private readonly MenuItemRepository _repo = new MenuItemRepository();
 
@@ -116,7 +116,7 @@ namespace ChallengeOne_UnitTests
             bool success = _repo.UpdateMenuItemForMealNumber(mealNumber, newItem);
 
             // Assert
-            Assert.IsTrue(success);
+            Assert.IsFalse(success);
         }
 
         [TestMethod]

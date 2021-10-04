@@ -2,18 +2,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("1_ChallengeOne_UnitTests")]
+[assembly: AssemblyTitle("7_ChallengeSeven_UnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("1_ChallengeOne_UnitTests")]
+[assembly: AssemblyProduct("7_ChallengeSeven_UnitTests")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("2cc25ff1-d076-49ea-9a9b-9af4f842b98c")]
+[assembly: Guid("cdc70e84-0453-40b2-afca-f7c0f7e53983")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

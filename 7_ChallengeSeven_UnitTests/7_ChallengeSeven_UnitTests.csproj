@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2CC25FF1-D076-49EA-9A9B-9AF4F842B98C}</ProjectGuid>
+    <ProjectGuid>{CDC70E84-0453-40B2-AFCA-F7C0F7E53983}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_1_ChallengeOne_UnitTests</RootNamespace>
-    <AssemblyName>1_ChallengeOne_UnitTests</AssemblyName>
+    <RootNamespace>_7_ChallengeSeven_UnitTests</RootNamespace>
+    <AssemblyName>7_ChallengeSeven_UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,12 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\1_ChallengeOne_Repository\1_ChallengeOne_Repository.csproj">
-      <Project>{80a2820b-0763-4172-8848-d5b75d8f11be}</Project>
-      <Name>1_ChallengeOne_Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
