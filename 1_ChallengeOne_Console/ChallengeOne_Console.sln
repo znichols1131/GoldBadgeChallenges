@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6_ChallengeSix_UnitTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_ChallengeOne_UnitTests", "..\1_ChallengeOne_UnitTests\1_ChallengeOne_UnitTests.csproj", "{2CC25FF1-D076-49EA-9A9B-9AF4F842B98C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7_ChallengeSeven_Console", "..\7_ChallengeSeven_Console\7_ChallengeSeven_Console.csproj", "{FB75F324-EAC7-4023-8D33-CFB9C7E55C23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7_ChallengeSeven_Repository", "..\7_ChallengeSeven_Repository\7_ChallengeSeven_Repository.csproj", "{4E2955C1-E653-484F-88BB-7E26CFC316DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7_ChallengeSeven_UnitTests", "..\7_ChallengeSeven_UnitTests\7_ChallengeSeven_UnitTests.csproj", "{CDC70E84-0453-40B2-AFCA-F7C0F7E53983}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +51,18 @@ Global
 		{2CC25FF1-D076-49EA-9A9B-9AF4F842B98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CC25FF1-D076-49EA-9A9B-9AF4F842B98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CC25FF1-D076-49EA-9A9B-9AF4F842B98C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB75F324-EAC7-4023-8D33-CFB9C7E55C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB75F324-EAC7-4023-8D33-CFB9C7E55C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB75F324-EAC7-4023-8D33-CFB9C7E55C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB75F324-EAC7-4023-8D33-CFB9C7E55C23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E2955C1-E653-484F-88BB-7E26CFC316DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2955C1-E653-484F-88BB-7E26CFC316DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2955C1-E653-484F-88BB-7E26CFC316DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2955C1-E653-484F-88BB-7E26CFC316DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC70E84-0453-40B2-AFCA-F7C0F7E53983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC70E84-0453-40B2-AFCA-F7C0F7E53983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC70E84-0453-40B2-AFCA-F7C0F7E53983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC70E84-0453-40B2-AFCA-F7C0F7E53983}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,6 +10,8 @@ namespace _7_ChallengeSeven_Console
     {
         static void Main(string[] args)
         {
+            ConsoleUI consoleUI = new ConsoleUI();
+            consoleUI.Run();
         }
     }
 }

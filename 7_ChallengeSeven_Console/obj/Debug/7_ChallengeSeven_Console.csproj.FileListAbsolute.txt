@@ -1,0 +1,10 @@
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\obj\Debug\7_ChallengeSeven_Console.csproj.AssemblyReference.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\obj\Debug\7_ChallengeSeven_Console.csproj.CoreCompileInputs.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\bin\Debug\7_ChallengeSeven_Console.exe.config
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\bin\Debug\7_ChallengeSeven_Console.exe
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\bin\Debug\7_ChallengeSeven_Console.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\bin\Debug\7_ChallengeSeven_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\bin\Debug\7_ChallengeSeven_Repository.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\obj\Debug\7_ChallengeSeven_Console.csproj.CopyComplete
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\obj\Debug\7_ChallengeSeven_Console.exe
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Console\obj\Debug\7_ChallengeSeven_Console.pdb

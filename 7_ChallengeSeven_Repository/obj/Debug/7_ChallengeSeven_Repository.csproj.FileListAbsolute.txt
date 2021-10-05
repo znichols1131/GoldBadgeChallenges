@@ -1,0 +1,6 @@
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Repository\bin\Debug\7_ChallengeSeven_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Repository\bin\Debug\7_ChallengeSeven_Repository.pdb
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Repository\obj\Debug\7_ChallengeSeven_Repository.csproj.AssemblyReference.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Repository\obj\Debug\7_ChallengeSeven_Repository.csproj.CoreCompileInputs.cache
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Repository\obj\Debug\7_ChallengeSeven_Repository.dll
+C:\Users\znich\ElevenFiftyProjects\DotNetProjects\_GoldBadgeChallenges\7_ChallengeSeven_Repository\obj\Debug\7_ChallengeSeven_Repository.pdb
