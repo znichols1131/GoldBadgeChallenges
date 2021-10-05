@@ -23,7 +23,13 @@ namespace _7_ChallengeSeven_Console
         // Dummy data
         private void Populate()
         {
-            _partyRepo.CreateParty(new Party("Zach's birthday", DateTime.Parse("09/07/2020")));
+            Party party1 = new Party("Zach's birthday", DateTime.Parse("09/07/2020"));
+            Booth booth1 = new Booth("Hamburger booth");
+            Booth booth2 = new Booth("Ice cream booth");
+            party1.Booths.Add(booth1);
+            party1.Booths.Add(booth2);
+
+            _partyRepo.CreateParty(party1);
             _partyRepo.CreateParty(new Party("Bruce's retirement", DateTime.Parse("01/14/2021")));
             _partyRepo.CreateParty(new Party("Beesly's adoption", DateTime.Parse("02/07/2021")));
         }
@@ -115,6 +121,7 @@ namespace _7_ChallengeSeven_Console
             Party newParty = new Party(purpose, (DateTime)date);
             return newParty;
         }
+
         private string AskUser_StringInput(string prompt)
         {
             if(prompt is null || prompt == "")
@@ -195,6 +202,7 @@ namespace _7_ChallengeSeven_Console
             if (party is null)
             {
                 PrintErrorMessageForInput($"Party ID: {partyID}");
+                return;
             }
 
             bool keepLooping = true;
@@ -203,28 +211,51 @@ namespace _7_ChallengeSeven_Console
                 Console.Clear();
                 PrintTitle("Viewing barbecue party:");
 
-                Console.WriteLine("{0,-20}{1,-20}", "Party ID:", party.PartyID);
-                Console.WriteLine("{0,-20}{1,-20}", "Date:", party.Date.ToString(_dateFormat));
-                Console.WriteLine("{0,-20}{1,-20}", "Purpose:", party.Purpose);
+                Console.WriteLine("{0,-15}{1,-20}", "Party ID:", party.PartyID);
+                Console.WriteLine("{0,-15}{1,-20}", "Date:", party.Date.ToString(_dateFormat));
+                Console.WriteLine("{0,-15}{1,-20}", "Purpose:", party.Purpose);
+
+                // Print any booths
+                Console.Write("{0,-15}", "Booths:");
+                if(party.Booths is null || party.Booths.Count == 0)
+                {
+                    Console.WriteLine("{0,-20}", "There are no booths for this party.");
+                }
+                else
+                {
+                    Console.WriteLine();
+                    for(int i = 0; i<party.Booths.Count; i++)
+                    {
+                        Booth booth = party.Booths[i];
+                        Console.WriteLine("{0,-12}{1, -3}{2,-20}", "", i, booth.Name);
+                    }
+                }
 
                 Console.WriteLine("\n" + _dashes + "\n\nWhat would you like to do?\n" +
-                    "1. Update make.\n" +
-                    "2. Update model.\n" +
-                    "3. Update year.\n" +
-                    "4. Update production cost.\n" +
-                    "5. Update mileages.\n" +
-                    "6. Update capacities.\n" +
-                    "7. Return to previous menu.\n");
+                    "1. Update date.\n" +
+                    "2. Update purpose.\n" +
+                    "3. Add a booth.\n" +
+                    "4. Update a booth.\n" +
+                    "5. Remove booths.\n" +
+                    "6. Return to previous menu.\n");
                 string response = Console.ReadLine();
 
                 switch (response)
                 {
                     case "1":
-
+                        // Update date
+                        var date = AskUser_DateInput("Enter the party date (MM/DD/YYYY):");     // How to check if it's null since DateTime isn't nullable
+                        if (!date.HasValue) { break; }
+                        party.Date = (DateTime)date;
+                        UpdateParty(partyID, party);
                         break;
 
                     case "2":
-
+                        // Update description
+                        string purpose = AskUser_StringInput("Enter the purpose for the barbecue party:");
+                        if (!ValidateStringResponse(purpose, true)) { break; }
+                        party.Purpose = purpose;
+                        UpdateParty(partyID, party);
                         break;
 
                     case "3":
@@ -240,10 +271,6 @@ namespace _7_ChallengeSeven_Console
                         break;
 
                     case "6":
-                        
-                        break;
-
-                    case "7":
                         // Return to main menu
                         return;
                     default:
@@ -340,10 +367,17 @@ namespace _7_ChallengeSeven_Console
 
                 foreach (Party party in listOfParties)
                 {
+                    // Make sure the purpose isn't too long
+                    string formattedPurpose = party.Purpose;
+                    if(formattedPurpose.Length > 23)
+                    {
+                        formattedPurpose = formattedPurpose.Substring(0, 20) + "...";
+                    }
+                    
                     Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10:N0}${4,-20:0,0.00}",
                         party.PartyID,
                         party.Date.ToString(_dateFormat),
-                        party.Purpose,
+                        formattedPurpose,
                         party.TicketsExchanged(),
                         party.TotalCost());
                 }
@@ -422,27 +456,27 @@ namespace _7_ChallengeSeven_Console
 
         //}
 
-        //private void UpdateMenuItem(int mealNumber, MenuItem newItem)
-        //{
-        //    if (newItem is null)
-        //    {
-        //        Console.WriteLine("\nMeal could not be updated. Press any key to continue.");
-        //        Console.ReadLine();
-        //        return;
-        //    }
+        private void UpdateParty(int partyID, Party newParty)
+        {
+            if (newParty is null)
+            {
+                Console.WriteLine("\nParty could not be updated. Press any key to continue.");
+                Console.ReadLine();
+                return;
+            }
 
-        //    bool success = _menuItemRepo.UpdateMenuItemForMealNumber(mealNumber, newItem);
-        //    if (success)
-        //    {
-        //        Console.WriteLine($"\nMeal {newItem.MealName} is updated. Press any key to continue.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine($"\nMeal {newItem.MealName} could not be updated. Press any key to continue.");
-        //    }
+            bool success = _partyRepo.UpdatePartyForID(partyID, newParty);
+            if (success)
+            {
+                Console.WriteLine($"\nParty is updated. Press any key to continue.");
+            }
+            else
+            {
+                Console.WriteLine($"\nParty could not be updated. Press any key to continue.");
+            }
 
-        //    Console.ReadLine();
-        //    return;
-        //}
+            Console.ReadLine();
+            return;
+        }
     }
 }
