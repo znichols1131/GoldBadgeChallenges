@@ -92,11 +92,11 @@ namespace _6_ChallengeSix_Console
                 bool success = _carRepo.CreateCar(newCar);
                 if (success)
                 {
-                    Console.WriteLine($"\nCar {newCar.Make} {newCar.Model} has been created. Press any key to coninue.\n");
+                    Console.WriteLine($"\nCar {newCar.Make} {newCar.Model} has been created. Press any key to continue.\n");
                 }
                 else
                 {
-                    Console.WriteLine($"\nCar {newCar.Make} {newCar.Model} could not be created. Press any key to coninue.\n");
+                    Console.WriteLine($"\nCar {newCar.Make} {newCar.Model} could not be created. Press any key to continue.\n");
                 }
                 Console.ReadLine();
                 return;

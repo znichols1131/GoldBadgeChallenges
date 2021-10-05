@@ -22,7 +22,9 @@ namespace _7_ChallengeSeven_Console
         // Dummy data
         private void Populate()
         {
-            
+            _partyRepo.CreateParty(new Party("Zach's birthday", DateTime.Parse("09/07/2020")));
+            _partyRepo.CreateParty(new Party("Bruce's retirement", DateTime.Parse("01/14/2021")));
+            _partyRepo.CreateParty(new Party("Beesly's adoption", DateTime.Parse("02/07/2021")));
         }
 
         // Main menu
@@ -46,7 +48,7 @@ namespace _7_ChallengeSeven_Console
                 switch (response)
                 {
                     case "1":
-                        Menu_Create();
+                        Menu_CreateParty();
                         break;
                     case "2":
                         Menu_ViewOrUpdate_All();
@@ -65,16 +67,88 @@ namespace _7_ChallengeSeven_Console
             }
         }
 
+
         // Create menu item
-        private void Menu_Create()
+        private void Menu_CreateParty()
         {
             Console.Clear();
-            PrintTitle("Creating new menu items:");
+            PrintTitle("Creating new barbecue party:");
 
-            
+            Party newParty = AskUserForParty();
+            if (!(newParty is null))
+            {
+                bool success = _partyRepo.CreateParty(newParty);
+                if (success)
+                {
+                    Console.WriteLine($"\nParty {newParty.Purpose} on {newParty.Date.ToString("MMMM dd, yyyy")} has been created. Press any key to continue.\n");
+                }
+                else
+                {
+                    Console.WriteLine($"\nParty could not be created. Press any key to continue.\n");
+                }
+                Console.ReadLine();
+                return;
+            }else
+            {
+                return;
+            }
+
+            // Go into update mode for that new party
+            Menu_ViewOrUpdate_Specific(newParty.PartyID);
+
         }
 
-        
+        private Party AskUserForParty()
+        {
+            Console.Write("Step 1 of 2: ");
+            string purpose = AskUser_StringInput("Enter the purpose for the barbecue party:");
+            if (purpose is null) { return null; }
+
+            Console.Write("\nStep 2 of 2: ");
+            var date = AskUser_DateInput("Enter the party date (MM/DD/YYYY):");     // How to check if it's null since DateTime isn't nullable
+            if (!date.HasValue) { return null; }
+
+            Party newParty = new Party(purpose, (DateTime)date);
+            return newParty;
+        }
+        private string AskUser_StringInput(string prompt)
+        {
+            if(prompt is null || prompt == "")
+            {
+                return null;
+            }
+
+            Console.WriteLine(prompt);
+            string response = Console.ReadLine();
+            if (!ValidateStringResponse(response, true))
+            {
+                PrintErrorMessageForInput(response);
+                return null;
+            }
+
+            return response;
+        }
+
+        private DateTime? AskUser_DateInput(string prompt)
+        {
+            if (prompt is null || prompt == "")
+            {
+                return null;
+            }
+
+            Console.WriteLine(prompt);
+            string response = Console.ReadLine();
+            if (!ValidateDateResponse(response, true))
+            {
+                PrintErrorMessageForInput(response);
+                return null;
+            }
+
+            DateTime date;
+            date = DateTime.Parse(response);
+            return date;
+        }
+
 
         // Update existing menu item
         private void Menu_ViewOrUpdate_All()
@@ -83,11 +157,11 @@ namespace _7_ChallengeSeven_Console
             while (keepLooping)
             {
                 Console.Clear();
-                PrintTitle("Existing menu items:");
+                PrintTitle("Existing barbecue parties:");
 
                 PrintMenuItemsInList(_partyRepo.GetAllParties());
 
-                Console.WriteLine("\n" + _dashes + "\n\nEnter a meal number to view item " +
+                Console.WriteLine("\n" + _dashes + "\n\nEnter a party number to view barbecue party " +
                     "or press enter to return to the main menu:\n");
                 string response = Console.ReadLine();
 
@@ -103,7 +177,7 @@ namespace _7_ChallengeSeven_Console
             }
         }
 
-        private void Menu_ViewOrUpdate_Specific(int mealNumber)
+        private void Menu_ViewOrUpdate_Specific(int partyID)
         {
             
         }
@@ -115,11 +189,11 @@ namespace _7_ChallengeSeven_Console
             while (keepLooping)
             {
                 Console.Clear();
-                PrintTitle("Existing menu items:");
+                PrintTitle("Existing barbecue parties:");
 
                 PrintMenuItemsInList(_partyRepo.GetAllParties());
 
-                Console.WriteLine("\n" + _dashes + "\n\nEnter a meal number to delete item " +
+                Console.WriteLine("\n" + _dashes + "\n\nEnter a party number to delete barbecue party " +
                     "or press enter to return to the main menu:\n");
                 string response = Console.ReadLine();
 
@@ -129,7 +203,25 @@ namespace _7_ChallengeSeven_Console
                         // Return to main menu
                         return;
                     default:
+                        try
+                        {
+                            int partyID = int.Parse(response.Trim());
+                            bool success = _partyRepo.DeletePartyForID(partyID);
 
+                            if (success)
+                            {
+                                Console.WriteLine($"\nParty was successfully deleted. Press any key to continue.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nParty could not be deleted at this time. Press any key to continue.");
+                            }
+                            Console.ReadLine();
+                        }
+                        catch
+                        {
+                            PrintErrorMessageForInput(response);
+                        }
                         break;
                 }
             }
@@ -168,18 +260,18 @@ namespace _7_ChallengeSeven_Console
             }
             else
             {
-                Console.WriteLine("{0,-5}{1,-15}{2,-25}{3,-7}{4,-20}\n",
+                Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10}{4,-20}\n",
                         "Party #",
                         "Date",
                         "Purpose",
-                        "Tickets Exchanged",
+                        "Tickets",
                         "Total Cost");
 
                 foreach (Party party in listOfParties)
                 {
-                    Console.WriteLine("{0,-5}{1,-15}{2,-25}{3,-7:0,0}${4,-20:0,0.00}",
+                    Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10:N0}${4,-20:0,0.00}",
                         party.PartyID,
-                        party.Date.ToString("MMMM dd, yyyy"),
+                        party.Date.ToString("MMM dd, yyyy"),
                         party.Purpose,
                         party.TicketsExchanged(),
                         party.TotalCost());
@@ -215,6 +307,24 @@ namespace _7_ChallengeSeven_Console
             }
 
             return true;
+        }
+
+        private bool ValidateDateResponse(string response, bool required)
+        {
+            if(ValidateStringResponse(response, required))
+            {
+                try
+                {
+                    DateTime date = DateTime.Parse(response);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         //private List<string> SplitStringIntoIngredients(string input)

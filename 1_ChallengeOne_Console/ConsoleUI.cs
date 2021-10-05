@@ -96,11 +96,11 @@ namespace ChallengeOne_Console
                 bool success = _menuItemRepo.CreateMenuItem(newItem);
                 if (success)
                 {
-                    Console.WriteLine($"\nMenu item {newItem.MealName} has been created. Press any key to coninue.\n");
+                    Console.WriteLine($"\nMenu item {newItem.MealName} has been created. Press any key to continue.\n");
                 }
                 else
                 {
-                    Console.WriteLine($"\nMenu item {newItem.MealName} could not be created. Press any key to coninue.\n");
+                    Console.WriteLine($"\nMenu item {newItem.MealName} could not be created. Press any key to continue.\n");
                 }
                 Console.ReadLine();
                 return;
