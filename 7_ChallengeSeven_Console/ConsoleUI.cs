@@ -12,6 +12,7 @@ namespace _7_ChallengeSeven_Console
         private PartyRepository _partyRepo = new PartyRepository();
 
         private string _dashes = "------------------------------";
+        private string _dateFormat = "MMM dd, yyyy";
 
         public void Run()
         {
@@ -80,16 +81,19 @@ namespace _7_ChallengeSeven_Console
                 bool success = _partyRepo.CreateParty(newParty);
                 if (success)
                 {
-                    Console.WriteLine($"\nParty {newParty.Purpose} on {newParty.Date.ToString("MMMM dd, yyyy")} has been created. Press any key to continue.\n");
+                    Console.WriteLine($"\nParty {newParty.Purpose} on {newParty.Date.ToString(_dateFormat)} has been created. Press any key to continue.\n");
+                    Console.ReadLine();
                 }
                 else
                 {
                     Console.WriteLine($"\nParty could not be created. Press any key to continue.\n");
+                    Console.ReadLine();
+                    return;
                 }
-                Console.ReadLine();
-                return;
             }else
             {
+                Console.WriteLine($"\nParty could not be created. Press any key to continue.\n");
+                Console.ReadLine();
                 return;
             }
 
@@ -171,7 +175,15 @@ namespace _7_ChallengeSeven_Console
                         // Return to main menu
                         return;
                     default:
-                        
+                        try
+                        {
+                            int partyID = int.Parse(response.Trim());
+                            Menu_ViewOrUpdate_Specific(partyID);
+                        }
+                        catch
+                        {
+                            PrintErrorMessageForInput(response);
+                        }
                         break;
                 }
             }
@@ -179,7 +191,66 @@ namespace _7_ChallengeSeven_Console
 
         private void Menu_ViewOrUpdate_Specific(int partyID)
         {
-            
+            Party party = _partyRepo.GetPartyForID(partyID);
+            if (party is null)
+            {
+                PrintErrorMessageForInput($"Party ID: {partyID}");
+            }
+
+            bool keepLooping = true;
+            while (keepLooping)
+            {
+                Console.Clear();
+                PrintTitle("Viewing barbecue party:");
+
+                Console.WriteLine("{0,-20}{1,-20}", "Party ID:", party.PartyID);
+                Console.WriteLine("{0,-20}{1,-20}", "Date:", party.Date.ToString(_dateFormat));
+                Console.WriteLine("{0,-20}{1,-20}", "Purpose:", party.Purpose);
+
+                Console.WriteLine("\n" + _dashes + "\n\nWhat would you like to do?\n" +
+                    "1. Update make.\n" +
+                    "2. Update model.\n" +
+                    "3. Update year.\n" +
+                    "4. Update production cost.\n" +
+                    "5. Update mileages.\n" +
+                    "6. Update capacities.\n" +
+                    "7. Return to previous menu.\n");
+                string response = Console.ReadLine();
+
+                switch (response)
+                {
+                    case "1":
+
+                        break;
+
+                    case "2":
+
+                        break;
+
+                    case "3":
+
+                        break;
+
+                    case "4":
+
+                        break;
+
+                    case "5":
+
+                        break;
+
+                    case "6":
+                        
+                        break;
+
+                    case "7":
+                        // Return to main menu
+                        return;
+                    default:
+                        PrintErrorMessageForInput(response);
+                        break;
+                }
+            }
         }
 
         // Delete existing menu item
@@ -271,7 +342,7 @@ namespace _7_ChallengeSeven_Console
                 {
                     Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10:N0}${4,-20:0,0.00}",
                         party.PartyID,
-                        party.Date.ToString("MMM dd, yyyy"),
+                        party.Date.ToString(_dateFormat),
                         party.Purpose,
                         party.TicketsExchanged(),
                         party.TotalCost());
