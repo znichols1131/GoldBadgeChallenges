@@ -75,7 +75,7 @@ namespace _7_ChallengeSeven_Console
                 Console.Clear();
                 PrintTitle("Existing barbecue parties:");
 
-                PrintMenuItemsInList(_partyRepo.GetAllParties());
+                PrintPartiesInList(_partyRepo.GetAllParties());
 
                 Console.WriteLine("\n" + _dashes + "\n\nEnter a party number to view barbecue party " +
                     "or press enter to return to the main menu:\n");
@@ -140,8 +140,8 @@ namespace _7_ChallengeSeven_Console
                     "1. Update date.\n" +
                     "2. Update purpose.\n" +
                     "3. Add a booth.\n" +
-                    "4. Update a booth.\n" +
-                    "5. Remove booths.\n" +
+                    "4. View existing booths.\n" +
+                    "5. Remove existing booths.\n" +
                     "6. Return to previous menu.\n");
                 string response = Console.ReadLine();
 
@@ -165,10 +165,14 @@ namespace _7_ChallengeSeven_Console
 
                     case "3":
                         // Add booth
+                        ConsoleUI_Booth consoleUI_Booth = new ConsoleUI_Booth(party);
+                        consoleUI_Booth.Menu_CreateBooth();
                         break;
 
                     case "4":
                         // Update booth
+                        ConsoleUI_Booth consoleUI_Booth2 = new ConsoleUI_Booth(party);
+                        consoleUI_Booth2.Menu_ViewOrUpdate_All();
                         break;
 
                     case "5":
@@ -221,9 +225,9 @@ namespace _7_ChallengeSeven_Console
                 Console.Clear();
                 PrintTitle("Existing barbecue parties:");
 
-                PrintMenuItemsInList(_partyRepo.GetAllParties());
+                PrintPartiesInList(_partyRepo.GetAllParties());
 
-                Console.WriteLine("\n" + _dashes + "\n\nEnter a party number to delete barbecue party " +
+                Console.WriteLine("\n" + _dashes + "\n\nEnter all party numbers to delete separated by commas " +
                     "or press enter to return to the main menu:\n");
                 string response = Console.ReadLine();
 
@@ -235,18 +239,32 @@ namespace _7_ChallengeSeven_Console
                     default:
                         try
                         {
-                            int partyID = int.Parse(response.Trim());
-                            bool success = _partyRepo.DeletePartyForID(partyID);
+                            if (_partyRepo.GetAllParties() is null || _partyRepo.GetAllParties().Count == 0)
+                            {
+                                Console.WriteLine($"\nWe're sorry, there are no barbecue parties to delete. Press any key to continue.");
+                                Console.ReadLine();
+                                break;
+                            }
 
-                            if (success)
+                            List<int> partiesIDsToDelete = SplitStringIntoIDs(response);
+                            if (!(partiesIDsToDelete is null || partiesIDsToDelete.Count == 0))
                             {
-                                Console.WriteLine($"\nParty was successfully deleted. Press any key to continue.");
+                                bool success2 = true;
+                                foreach (int id in partiesIDsToDelete)
+                                {
+                                    success2 = (success2 && _partyRepo.DeletePartyForID(id));
+                                }
+
+                                if (success2)
+                                {
+                                    Console.WriteLine($"\nAll barbecue parties were successfully removed. Press any key to continue.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"\nAt least one barbecue party could not be removed. Press any key to continue.");
+                                }
+                                Console.ReadLine();
                             }
-                            else
-                            {
-                                Console.WriteLine($"\nParty could not be deleted at this time. Press any key to continue.");
-                            }
-                            Console.ReadLine();
                         }
                         catch
                         {
@@ -315,7 +333,7 @@ namespace _7_ChallengeSeven_Console
             return parsedBooths;
         }
 
-        private void PrintMenuItemsInList(List<Party> listOfParties)
+        private void PrintPartiesInList(List<Party> listOfParties)
         {
             if (listOfParties is null || listOfParties.Count == 0)
             {

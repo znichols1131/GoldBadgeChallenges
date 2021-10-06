@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleUI.cs" />
+    <Compile Include="ConsoleUI_Booth.cs" />
     <Compile Include="ConsoleUI_FormattingHelpers.cs" />
     <Compile Include="ConsoleUI_Party.cs" />
     <Compile Include="Program.cs" />
