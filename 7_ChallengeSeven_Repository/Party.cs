@@ -61,7 +61,7 @@ namespace _7_ChallengeSeven_Repository
         public bool AddBooth(Booth newBooth)
         {
             // Check to see if the booth already exists
-            if (newBooth is null || Booths is null || Booths.Count == 0)
+            if (newBooth is null || Booths is null)
             {
                 return false;
             }
@@ -110,6 +110,29 @@ namespace _7_ChallengeSeven_Repository
 
                     return false;
                 }
+            }
+
+            return false;
+        }
+
+        public bool UpdateBoothAtIndex(int boothIndex, Booth newBooth)
+        {
+            // Check to see if the booth already exists
+            if (newBooth is null || Booths is null || Booths.Count == 0 || boothIndex < 0)
+            {
+                return false;
+            }
+
+            try
+            {
+                Booth oldBooth = Booths[boothIndex];
+                oldBooth.Name = newBooth.Name;
+                oldBooth.Products = newBooth.Products;
+                return true;
+            }
+            catch
+            {
+                return false;
             }
 
             return false;

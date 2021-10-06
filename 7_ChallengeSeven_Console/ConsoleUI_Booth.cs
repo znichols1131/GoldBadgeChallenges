@@ -17,7 +17,7 @@ namespace _7_ChallengeSeven_Console
             _party = party;
         }
 
-        // Create party
+        // Create
         public void Menu_CreateBooth()
         {
             Console.Clear();
@@ -62,7 +62,7 @@ namespace _7_ChallengeSeven_Console
         }
 
 
-        // Update existing party
+        // Update existing
         public void Menu_ViewOrUpdate_All()
         {
             bool keepLooping = true;
@@ -109,7 +109,7 @@ namespace _7_ChallengeSeven_Console
             Booth booth = _party.Booths[boothID];
             if (booth is null)
             {
-                PrintErrorMessageForInput($"Booth numuber: {boothID}");
+                PrintErrorMessageForInput($"Booth number: {boothID}");
                 return;
             }
 
@@ -141,7 +141,7 @@ namespace _7_ChallengeSeven_Console
                 Console.WriteLine("\n" + _dashes + "\n\nWhat would you like to do?\n" +
                     "1. Update name.\n" +
                     "2. Add a product.\n" +
-                    "3. Update a product.\n" +
+                    "3. View existing products.\n" +
                     "4. Remove products.\n" +
                     "5. Return to previous menu.\n");
                 string response = Console.ReadLine();
@@ -149,19 +149,53 @@ namespace _7_ChallengeSeven_Console
                 switch (response)
                 {
                     case "1":
-
+                        // Update name
+                        string boothName = AskUser_StringInput("Enter the name of the booth:");
+                        if (boothName is null) { break; }
+                        booth.Name = boothName;
+                        UpdateBooth(boothID, booth);
                         break;
 
                     case "2":
-
+                        // Add product
+                        ConsoleUI_Product consoleUI_Product = new ConsoleUI_Product(booth);
+                        consoleUI_Product.Menu_CreateProduct();
                         break;
 
                     case "3":
-
+                        // See products
+                        ConsoleUI_Product consoleUI_Product2 = new ConsoleUI_Product(booth);
+                        consoleUI_Product2.Menu_ViewOrUpdate_All();
                         break;
 
                     case "4":
+                        // Remove products
+                        if (booth.Products is null || booth.Products.Count == 0)
+                        {
+                            Console.WriteLine($"\nWe're sorry, there are no products to delete. Press any key to continue.");
+                            Console.ReadLine();
+                            break;
+                        }
 
+                        List<Product> productsToDelete = AskUser_ProductsForBooth(booth);
+                        if (!(productsToDelete is null || productsToDelete.Count == 0))
+                        {
+                            bool success = true;
+                            foreach (Product product in productsToDelete)
+                            {
+                                success = (success && booth.RemoveProduct(product));
+                            }
+
+                            if (success)
+                            {
+                                Console.WriteLine($"\nAll products were successfully removed. Press any key to continue.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nAt least one product could not be removed. Press any key to continue.");
+                            }
+                            Console.ReadLine();
+                        }
                         break;
 
                     case "5":
@@ -175,7 +209,7 @@ namespace _7_ChallengeSeven_Console
         }
 
 
-        // Delete existing party
+        // Delete existing
         public void Menu_Delete()
         {
             bool keepLooping = true;
@@ -250,37 +284,37 @@ namespace _7_ChallengeSeven_Console
 
 
         // Helper methods (if any)
-        private List<Booth> AskUser_BoothsForParty(Party party)
+        private List<Product> AskUser_ProductsForBooth(Booth booth)
         {
-            if (party is null || party.Booths is null || party.Booths.Count == 0)
+            if (booth is null || booth.Products is null || booth.Products.Count == 0)
             {
                 return null;
             }
 
-            Console.WriteLine("Enter all booth numbers separated by commas:");
-            string boothsStr = Console.ReadLine();
-            if (!ValidateStringResponse(boothsStr, true))
+            Console.WriteLine("Enter all product numbers separated by commas:");
+            string productStr = Console.ReadLine();
+            if (!ValidateStringResponse(productStr, true))
             {
-                PrintErrorMessageForInput(boothsStr);
+                PrintErrorMessageForInput(productStr);
                 return null;
             }
-            List<int> boothIDs = SplitStringIntoIDs(boothsStr);
-            if (boothIDs is null || boothIDs.Count == 0)
+            List<int> productIDs = SplitStringIntoIDs(productStr);
+            if (productIDs is null || productIDs.Count == 0)
             {
                 return null;
             }
 
-            List<Booth> parsedBooths = new List<Booth>();
-            foreach (int id in boothIDs)
+            List<Product> parsedProducts = new List<Product>();
+            foreach (int id in productIDs)
             {
-                Booth newBooth = party.Booths[id];
-                if (!(newBooth is null))
+                Product newProduct = booth.Products[id];
+                if (!(newProduct is null))
                 {
-                    parsedBooths.Add(newBooth);
+                    parsedProducts.Add(newProduct);
                 }
             }
 
-            return parsedBooths;
+            return parsedProducts;
         }
 
         private void PrintBoothsInList(List<Booth> listOfBooths)
@@ -319,5 +353,29 @@ namespace _7_ChallengeSeven_Console
                 }
             }
         }
+
+        private void UpdateBooth(int boothID, Booth newBooth)
+        {
+            if (newBooth is null || _party is null || _party.Booths is null || _party.Booths.Count == 0)
+            {
+                Console.WriteLine("\nBooth could not be updated. Press any key to continue.");
+                Console.ReadLine();
+                return;
+            }
+
+            bool success = _party.UpdateBoothAtIndex(boothID, newBooth);
+            if (success)
+            {
+                Console.WriteLine($"\nBooth is updated. Press any key to continue.");
+            }
+            else
+            {
+                Console.WriteLine($"\nBooth could not be updated. Press any key to continue.");
+            }
+
+            Console.ReadLine();
+            return;
+        }
+
     }
 }

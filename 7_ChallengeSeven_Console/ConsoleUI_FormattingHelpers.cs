@@ -8,8 +8,9 @@ namespace _7_ChallengeSeven_Console
 {
     public abstract class ConsoleUI_FormattingHelpers
     {
-        public string _dashes = "------------------------------";
-        public string _dateFormat = "MMM dd, yyyy";
+        private string _dashes = "------------------------------";
+        private string _dateFormat = "MMM dd, yyyy";
+        public List<string> NavigationStrings = new List<string>();
 
         // Helper methods (if any)
         public void PrintLogo()
@@ -149,5 +150,8 @@ namespace _7_ChallengeSeven_Console
             return date;
         }
 
+
+        // Navigation bar methods
+        
     }
 }

@@ -23,15 +23,114 @@ namespace _7_ChallengeSeven_Console
         // Dummy data
         private void Populate()
         {
-            Party party1 = new Party("Zach's birthday", DateTime.Parse("09/07/2020"));
-            Booth booth1 = new Booth("Hamburger booth");
-            Booth booth2 = new Booth("Ice cream booth");
-            party1.Booths.Add(booth1);
-            party1.Booths.Add(booth2);
+            // Define ingredients
+            Ingredient bun = new Ingredient("Bun", 0.25);
+            Ingredient burgerPatty = new Ingredient("Burger patty", 25);
+            Ingredient hotDogWeiner = new Ingredient("Hot dog weiner", 0.75);
+            Ingredient veggiePatty = new Ingredient("Veggie patty", 1.50);
+            Ingredient cheese = new Ingredient("Cheese", 0.15);
+            Ingredient condiments = new Ingredient("Condiments", 0.10);
+            Ingredient utensils = new Ingredient("Utensils", 0.20);
+            Ingredient popcornKernels = new Ingredient("Popcorn kernels", 0.35);
+            Ingredient iceCream = new Ingredient("Ice cream", 0.75);
+            Ingredient iceCreamToppings = new Ingredient("Ice cream toppings", 0.50);
 
+            // Define products
+            Product hamburger = new Product("Hamburger");
+            hamburger.Ingredients.Add(bun.Clone());
+            hamburger.Ingredients.Add(burgerPatty.Clone());
+            hamburger.Ingredients.Add(condiments.Clone());
+            hamburger.Ingredients.Add(utensils.Clone());
+
+            Product cheeseburger = new Product("Cheeseburger");
+            cheeseburger.Ingredients.Add(bun.Clone());
+            cheeseburger.Ingredients.Add(burgerPatty.Clone());
+            cheeseburger.Ingredients.Add(cheese.Clone());
+            cheeseburger.Ingredients.Add(condiments.Clone());
+            cheeseburger.Ingredients.Add(utensils.Clone());
+
+            Product veggieBurger = new Product("Veggie burger");
+            veggieBurger.Ingredients.Add(bun.Clone());
+            veggieBurger.Ingredients.Add(veggiePatty.Clone());
+            veggieBurger.Ingredients.Add(condiments.Clone());
+            veggieBurger.Ingredients.Add(utensils.Clone());
+
+            Product hotDog = new Product("Hot dog");
+            hotDog.Ingredients.Add(bun.Clone());
+            hotDog.Ingredients.Add(hotDogWeiner.Clone());
+            hotDog.Ingredients.Add(condiments.Clone());
+            hotDog.Ingredients.Add(utensils.Clone());
+
+            Product popcorn = new Product("Bag of popcorn");
+            popcorn.Ingredients.Add(popcornKernels.Clone());
+            popcorn.Ingredients.Add(utensils.Clone());
+
+            Product iceCreamCone = new Product("Ice cream cone");
+            iceCreamCone.Ingredients.Add(iceCream.Clone());
+            iceCreamCone.Ingredients.Add(iceCreamToppings.Clone());
+            iceCreamCone.Ingredients.Add(utensils.Clone());
+
+            // Define booths
+            Booth hamburgerBooth = new Booth("Hamburger booth");
+            hamburgerBooth.AddProduct(hamburger.Clone());
+            hamburgerBooth.AddProduct(cheeseburger.Clone());
+            hamburgerBooth.AddProduct(veggieBurger.Clone());
+            hamburgerBooth.AddProduct(hotDog.Clone());
+
+            Booth treatsBooth = new Booth("Treats booth");
+            treatsBooth.AddProduct(popcorn.Clone());
+            treatsBooth.AddProduct(iceCreamCone.Clone());
+
+            // Define parties
+            Party party1 = new Party("Zach's birthday", DateTime.Parse("09/07/2020"));
+            party1.Booths.Add(hamburgerBooth.Clone());
+            party1.Booths.Add(treatsBooth.Clone());
+            RandomizeParty(party1, 500);
             _partyRepo.CreateParty(party1);
-            _partyRepo.CreateParty(new Party("Bruce's retirement", DateTime.Parse("01/14/2021")));
-            _partyRepo.CreateParty(new Party("Beesly's adoption", DateTime.Parse("02/07/2021")));
+
+            Party party2 = new Party("Bruce's retirement", DateTime.Parse("01/14/2021"));
+            party2.Booths.Add(hamburgerBooth.Clone());
+            party2.Booths.Add(treatsBooth.Clone()); 
+            RandomizeParty(party2, 500);
+            _partyRepo.CreateParty(party2);
+
+            Party party3 = new Party("Beesly's adoption", DateTime.Parse("02/07/2021"));
+            party3.Booths.Add(hamburgerBooth.Clone());
+            party3.Booths.Add(treatsBooth.Clone()); 
+            RandomizeParty(party3, 500);
+            _partyRepo.CreateParty(party3);
+
+
+        }
+
+        public void RandomizeParty(Party party, int maxGuests)
+        {
+            // Randomize the data in the dummy data for testing purposes
+
+            if(party is null || party.Booths is null || party.Booths.Count == 0 || maxGuests < 0)
+            {
+                return;
+            }
+
+            int remainingTickets = maxGuests;
+            Random rng = new Random();
+
+            foreach (Booth booth in party.Booths)
+            {
+                if (!(booth is null || booth.Products is null || booth.Products.Count == 0))
+                {
+                    foreach(Product product in booth.Products)
+                    {
+                        if (!(product is null) && remainingTickets > 0)
+                        {
+                            int ticketsExchanged = rng.Next(0, remainingTickets);
+                            remainingTickets -= ticketsExchanged;
+                            product.ExchangeTickets(ticketsExchanged);
+                        }
+                    }
+                }
+            }
+
         }
 
         // Main menu

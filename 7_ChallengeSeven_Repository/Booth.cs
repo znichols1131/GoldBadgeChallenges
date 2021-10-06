@@ -24,6 +24,15 @@ namespace _7_ChallengeSeven_Repository
         }
 
 
+        // Cloning for testing
+        public Booth Clone()
+        {
+            Booth newBooth = new Booth(Name);
+            newBooth.Products = Products;
+            return newBooth;
+        }
+
+
         // Methods
         public double TotalCost()
         {
@@ -57,7 +66,7 @@ namespace _7_ChallengeSeven_Repository
         public bool AddProduct(Product newProduct)
         {
             // Check to see if the product already exists
-            if (newProduct is null || Products is null || Products.Count == 0)
+            if (newProduct is null || Products is null)
             {
                 return false;
             }
@@ -70,7 +79,16 @@ namespace _7_ChallengeSeven_Repository
                 }
             }
 
-            return true;
+            int before = Products.Count;
+            Products.Add(newProduct);
+            int after = Products.Count;
+
+            if (after > before)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public bool RemoveProduct(Product productToDelete)
@@ -85,8 +103,40 @@ namespace _7_ChallengeSeven_Repository
             {
                 if (oldProduct.Name == productToDelete.Name)
                 {
-                    return true;
+                    int before = Products.Count;
+                    Products.Remove(productToDelete);
+                    int after = Products.Count;
+
+                    if (after < before)
+                    {
+                        return true;
+                    }
+
+                    return false;
                 }
+            }
+
+            return false;
+        }
+
+        public bool UpdateProductAtIndex(int productIndex, Product newProduct)
+        {
+            // Check to see if the booth already exists
+            if (newProduct is null || Products is null || Products.Count == 0 || productIndex < 0)
+            {
+                return false;
+            }
+
+            try
+            {
+                Product oldProduct = Products[productIndex];
+                oldProduct.Name = newProduct.Name;
+                oldProduct.Ingredients = newProduct.Ingredients;
+                return true;
+            }
+            catch
+            {
+                return false;
             }
 
             return false;

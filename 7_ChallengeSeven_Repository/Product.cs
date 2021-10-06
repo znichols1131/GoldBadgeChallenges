@@ -26,10 +26,19 @@ namespace _7_ChallengeSeven_Repository
             _ticketsExchanged = 0;
         }
 
-        // Methods
-        public void ExchangeTicket()
+        // Cloning for testing
+        public Product Clone()
         {
-            _ticketsExchanged += 1;
+            Product newProduct = new Product(Name);
+            newProduct.Ingredients = Ingredients;
+            newProduct.ExchangeTickets(_ticketsExchanged);
+            return newProduct;
+        }
+
+        // Methods
+        public void ExchangeTickets(int tickets)
+        {
+            _ticketsExchanged += tickets;
         }
 
         public int TicketsExchanged()
@@ -61,7 +70,7 @@ namespace _7_ChallengeSeven_Repository
         public bool AddIngredient(Ingredient newIngredient)
         {
             // Check to see if the ingredient already exists
-            if(newIngredient is null || Ingredients is null || Ingredients.Count == 0)
+            if(newIngredient is null || Ingredients is null)
             {
                 return false;
             }
@@ -74,7 +83,16 @@ namespace _7_ChallengeSeven_Repository
                 }
             }
 
-            return true;
+            int before = Ingredients.Count;
+            Ingredients.Add(newIngredient);
+            int after = Ingredients.Count;
+
+            if (after > before)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public bool RemoveIngredient(Ingredient ingredientToDelete)
@@ -89,8 +107,40 @@ namespace _7_ChallengeSeven_Repository
             {
                 if (oldIngredient.Name == ingredientToDelete.Name)
                 {
-                    return true;
+                    int before = Ingredients.Count;
+                    Ingredients.Remove(ingredientToDelete);
+                    int after = Ingredients.Count;
+
+                    if (after < before)
+                    {
+                        return true;
+                    }
+
+                    return false;
                 }
+            }
+
+            return false;
+        }
+
+        public bool UpdateIngredientAtIndex(int ingredientIndex, Ingredient newIngredient)
+        {
+            // Check to see if the booth already exists
+            if (newIngredient is null || Ingredients is null || Ingredients.Count == 0 || ingredientIndex < 0)
+            {
+                return false;
+            }
+
+            try
+            {
+                Ingredient oldIngredient = Ingredients[ingredientIndex];
+                oldIngredient.Name = newIngredient.Name;
+                oldIngredient.Cost = newIngredient.Cost;
+                return true;
+            }
+            catch
+            {
+                return false;
             }
 
             return false;

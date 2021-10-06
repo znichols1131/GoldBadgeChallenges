@@ -47,6 +47,7 @@
     <Compile Include="ConsoleUI_Booth.cs" />
     <Compile Include="ConsoleUI_FormattingHelpers.cs" />
     <Compile Include="ConsoleUI_Party.cs" />
+    <Compile Include="ConsoleUI_Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

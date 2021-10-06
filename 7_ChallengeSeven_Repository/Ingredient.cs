@@ -24,5 +24,12 @@ namespace _7_ChallengeSeven_Repository
             Name = name;
             Cost = cost;
         }
+
+        // Cloning for testing
+        public Ingredient Clone()
+        {
+            Ingredient newIngredient = new Ingredient(Name, Cost);
+            return newIngredient;
+        }
     }
 }
