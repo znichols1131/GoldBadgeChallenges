@@ -74,7 +74,16 @@ namespace _7_ChallengeSeven_Repository
                 }
             }
 
-            return true;
+            int before = Booths.Count;
+            Booths.Add(newBooth);
+            int after = Booths.Count;
+
+            if(after > before)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public bool RemoveBooth(Booth boothToDelete)
@@ -89,7 +98,17 @@ namespace _7_ChallengeSeven_Repository
             {
                 if (oldBooth.Name == boothToDelete.Name)
                 {
-                    return true;
+
+                    int before = Booths.Count;
+                    Booths.Remove(boothToDelete);
+                    int after = Booths.Count;
+
+                    if (after < before)
+                    {
+                        return true;
+                    }
+
+                    return false;
                 }
             }
 

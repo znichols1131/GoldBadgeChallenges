@@ -80,7 +80,7 @@ namespace _6_ChallengeSix_Console
             }
         }
 
-        // Create menu item
+        // Create party
         private void Menu_Create()
         {
             Console.Clear();
@@ -366,7 +366,7 @@ namespace _6_ChallengeSix_Console
         }
 
 
-        // Update existing cars
+        // Update existing parties
         private void Menu_ViewOrUpdate_All()
         {
             bool keepLooping = true;
@@ -594,7 +594,7 @@ namespace _6_ChallengeSix_Console
         }
 
 
-        // Delete existing menu item
+        // Delete existing party
         private void Menu_Delete()
         {
             bool keepLooping = true;
