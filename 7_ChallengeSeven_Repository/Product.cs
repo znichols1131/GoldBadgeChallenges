@@ -30,12 +30,14 @@ namespace _7_ChallengeSeven_Repository
         public Product Clone()
         {
             Product newProduct = new Product(Name);
+            newProduct.Ingredients.Clear();
 
             foreach (Ingredient i in Ingredients)
             {
                 newProduct.AddIngredient(i.Clone());
             }
 
+            newProduct.ResetTickets();
             newProduct.ExchangeTickets(_ticketsExchanged);
             return newProduct;
         }
@@ -44,6 +46,11 @@ namespace _7_ChallengeSeven_Repository
         public void ExchangeTickets(int tickets)
         {
             _ticketsExchanged += tickets;
+        }
+
+        public void ResetTickets()
+        {
+            _ticketsExchanged = 0; ;
         }
 
         public int TicketsExchanged()

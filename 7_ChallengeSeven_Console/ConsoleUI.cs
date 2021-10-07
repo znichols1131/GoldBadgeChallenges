@@ -25,7 +25,7 @@ namespace _7_ChallengeSeven_Console
         {
             // Define ingredients
             Ingredient bun = new Ingredient("Bun", 0.25);
-            Ingredient burgerPatty = new Ingredient("Burger patty", 25);
+            Ingredient burgerPatty = new Ingredient("Burger patty", 2.50);
             Ingredient hotDogWeiner = new Ingredient("Hot dog weiner", 0.75);
             Ingredient veggiePatty = new Ingredient("Veggie patty", 1.50);
             Ingredient cheese = new Ingredient("Cheese", 0.15);
@@ -42,12 +42,12 @@ namespace _7_ChallengeSeven_Console
             hamburger.Ingredients.Add(condiments.Clone());
             hamburger.Ingredients.Add(utensils.Clone());
 
-            Product cheeseburger = new Product("Cheeseburger");
-            cheeseburger.Ingredients.Add(bun.Clone());
-            cheeseburger.Ingredients.Add(burgerPatty.Clone());
-            cheeseburger.Ingredients.Add(cheese.Clone());
-            cheeseburger.Ingredients.Add(condiments.Clone());
-            cheeseburger.Ingredients.Add(utensils.Clone());
+            //Product cheeseburger = new Product("Cheeseburger");
+            //cheeseburger.Ingredients.Add(bun.Clone());
+            //cheeseburger.Ingredients.Add(burgerPatty.Clone());
+            //cheeseburger.Ingredients.Add(cheese.Clone());
+            //cheeseburger.Ingredients.Add(condiments.Clone());
+            //cheeseburger.Ingredients.Add(utensils.Clone());
 
             Product veggieBurger = new Product("Veggie burger");
             veggieBurger.Ingredients.Add(bun.Clone());
@@ -73,7 +73,7 @@ namespace _7_ChallengeSeven_Console
             // Define booths
             Booth hamburgerBooth = new Booth("Hamburger booth");
             hamburgerBooth.AddProduct(hamburger.Clone());
-            hamburgerBooth.AddProduct(cheeseburger.Clone());
+            //hamburgerBooth.AddProduct(cheeseburger.Clone());
             hamburgerBooth.AddProduct(veggieBurger.Clone());
             hamburgerBooth.AddProduct(hotDog.Clone());
 
@@ -82,25 +82,23 @@ namespace _7_ChallengeSeven_Console
             treatsBooth.AddProduct(iceCreamCone.Clone());
 
             // Define parties
-            Party party1 = new Party("Zach's birthday", DateTime.Parse("09/07/2020"));
-            party1.Booths.Add(hamburgerBooth.Clone());
-            party1.Booths.Add(treatsBooth.Clone());
-            RandomizeParty(party1, 500);
-            _partyRepo.CreateParty(party1);
+            Party zachParty = new Party("Zach's birthday", DateTime.Parse("09/07/2020"));
+            zachParty.Booths.Add(hamburgerBooth.Clone());
+            zachParty.Booths.Add(treatsBooth.Clone());
+            //RandomizeParty(zachParty, 500);
+            _partyRepo.CreateParty(zachParty);
 
-            Party party2 = new Party("Bruce's retirement", DateTime.Parse("01/14/2021"));
-            party2.Booths.Add(hamburgerBooth.Clone());
-            party2.Booths.Add(treatsBooth.Clone()); 
-            RandomizeParty(party2, 500);
-            _partyRepo.CreateParty(party2);
+            Party bruceParty = new Party("Bruce's retirement", DateTime.Parse("01/14/2021"));
+            bruceParty.Booths.Add(hamburgerBooth.Clone());
+            bruceParty.Booths.Add(treatsBooth.Clone()); 
+            //RandomizeParty(bruceParty, 500);
+            _partyRepo.CreateParty(bruceParty);
 
-            Party party3 = new Party("Beesly's adoption", DateTime.Parse("02/07/2021"));
-            party3.Booths.Add(hamburgerBooth.Clone());
-            party3.Booths.Add(treatsBooth.Clone()); 
-            RandomizeParty(party3, 500);
-            _partyRepo.CreateParty(party3);
-
-
+            Party beeslyParty = new Party("Beesly's adoption", DateTime.Parse("02/07/2021"));
+            beeslyParty.Booths.Add(hamburgerBooth.Clone().Clone());
+            beeslyParty.Booths.Add(treatsBooth.Clone().Clone()); 
+            //RandomizeParty(beeslyParty, 500);
+            _partyRepo.CreateParty(beeslyParty);
         }
 
         public void RandomizeParty(Party party, int maxGuests)
@@ -125,14 +123,17 @@ namespace _7_ChallengeSeven_Console
                     {
                         if (!(product is null) && remainingTickets > 0)
                         {
-                            int ticketsExchanged = Math.Min(remainingTickets, (int)(rng.Next(75, 125) * maxGuests / 100 / booth.Products.Count));
+                            product.ResetTickets();
+                            double percentOfRemaining = ((double)rng.Next(50, 100) / 100.0d / (double)booth.Products.Count);
+                            int ticketsExchanged = Math.Min(remainingTickets, (int)(maxGuests * percentOfRemaining));
                             remainingTickets -= ticketsExchanged;
                             product.ExchangeTickets(ticketsExchanged);
                         }
                     }
+
+                    
                 }
             }
-
         }
 
         // Main menu
@@ -150,7 +151,8 @@ namespace _7_ChallengeSeven_Console
                 Console.WriteLine("1. Document a new barbecue party.\n" +
                     "2. View or update old barbecue parties.\n" +
                     "3. Delete an old barbecue party.\n" +
-                    "4. Quit.\n");
+                    "4. Quit.\n\n" +
+                    "5. Randomize parties (for testing only).\n");
                 string response = Console.ReadLine();
 
                 switch (response)
@@ -174,6 +176,22 @@ namespace _7_ChallengeSeven_Console
                         // Quit
                         Environment.Exit(0);
                         return;
+                    case "5":
+                        if(!(_partyRepo.GetAllParties() is null))
+                        {
+                            foreach (Party p in _partyRepo.GetAllParties())
+                            {
+                                RandomizeParty(p, 500);
+                            }
+                        }
+
+                        foreach(Party p in _partyRepo.GetAllParties())
+                        {
+                            RandomizeParty(p, 500);
+                        }
+                        Console.WriteLine("\nParties successfully randomized. Press any key to continue.");
+                        Console.ReadLine();
+                        break;
                     default:
                         PrintErrorMessageForInput(response);
                         break;

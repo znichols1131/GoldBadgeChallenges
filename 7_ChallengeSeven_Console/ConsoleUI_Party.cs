@@ -368,6 +368,8 @@ namespace _7_ChallengeSeven_Console
                         formattedPurpose = formattedPurpose.Substring(0, 20) + "...";
                     }
 
+                    int tickets = party.TicketsExchanged();
+
                     Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10:N0}{4,20:c2}",
                         party.PartyID,
                         party.Date.ToString(CONST_DATE_FORMAT),

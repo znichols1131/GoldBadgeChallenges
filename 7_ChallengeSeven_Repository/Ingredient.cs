@@ -28,8 +28,7 @@ namespace _7_ChallengeSeven_Repository
         // Cloning for testing
         public Ingredient Clone()
         {
-            Ingredient newIngredient = new Ingredient(Name, Cost);
-            return newIngredient;
+            return new Ingredient(Name, Cost);
         }
     }
 }

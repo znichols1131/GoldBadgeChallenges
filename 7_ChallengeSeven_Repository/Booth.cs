@@ -28,6 +28,7 @@ namespace _7_ChallengeSeven_Repository
         public Booth Clone()
         {
             Booth newBooth = new Booth(Name);
+            newBooth.Products.Clear();
 
             foreach(Product p in Products)
             {
