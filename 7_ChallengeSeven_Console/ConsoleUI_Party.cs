@@ -136,9 +136,12 @@ namespace _7_ChallengeSeven_Console
                     for (int i = 0; i < party.Booths.Count; i++)
                     {
                         Booth booth = party.Booths[i];
-                        Console.WriteLine("{0,-12}{1, -3}{2,-20}", "", i, booth.Name);
+                        Console.WriteLine("{0,-12}{1, -3}{2,-20}", "", $"#{i}", booth.Name);
                     }
                 }
+
+                Console.WriteLine("\n{0,-15}{1,-20:n0}", "Total tickets:", party.TicketsExchanged());
+                Console.WriteLine("{0,-15}{1,-20:c2}", "Total cost:", party.TotalCost());
 
                 Console.WriteLine("\n" + CONST_DASHES + "\n\nWhat would you like to do?\n" +
                     "1. Update date.\n" +
@@ -315,7 +318,7 @@ namespace _7_ChallengeSeven_Console
                 return null;
             }
 
-            Console.WriteLine("Enter all booth numbers separated by commas:");
+            Console.WriteLine("\nEnter all booth numbers separated by commas:");
             string boothsStr = Console.ReadLine();
             if (!ValidateStringResponse(boothsStr, true))
             {
@@ -349,7 +352,7 @@ namespace _7_ChallengeSeven_Console
             }
             else
             {
-                Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10}{4,-20}\n",
+                Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10}{4,20}\n",
                         "Party #",
                         "Date",
                         "Purpose",
@@ -365,7 +368,7 @@ namespace _7_ChallengeSeven_Console
                         formattedPurpose = formattedPurpose.Substring(0, 20) + "...";
                     }
 
-                    Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10:N0}${4,-20:0,0.00}",
+                    Console.WriteLine("{0,-10}{1,-15}{2,-25}{3,-10:N0}{4,20:c2}",
                         party.PartyID,
                         party.Date.ToString(CONST_DATE_FORMAT),
                         formattedPurpose,

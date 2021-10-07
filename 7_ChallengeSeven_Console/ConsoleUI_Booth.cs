@@ -138,9 +138,12 @@ namespace _7_ChallengeSeven_Console
                     for (int i = 0; i < booth.Products.Count; i++)
                     {
                         Product product = booth.Products[i];
-                        Console.WriteLine("{0,-12}{1, -3}{2,-20}", "", i, product.Name);
+                        Console.WriteLine("{0,-12}{1, -3}{2,-20}", "", $"#{i}", product.Name);
                     }
                 }
+
+                Console.WriteLine("\n{0,-15}{1,-20:n0}", "Total tickets:", booth.TicketsExchanged());
+                Console.WriteLine("{0,-15}{1,-20:c2}", "Total cost:", booth.TotalCost());
 
                 Console.WriteLine("\n" + CONST_DASHES + "\n\nWhat would you like to do?\n" +
                     "1. Update name.\n" +
@@ -299,7 +302,7 @@ namespace _7_ChallengeSeven_Console
                 return null;
             }
 
-            Console.WriteLine("Enter all product numbers separated by commas:");
+            Console.WriteLine("\nEnter all product numbers separated by commas:");
             string productStr = Console.ReadLine();
             if (!ValidateStringResponse(productStr, true))
             {
@@ -333,7 +336,7 @@ namespace _7_ChallengeSeven_Console
             }
             else
             {
-                Console.WriteLine("{0,-5}{1,-25}{2,-15}{3,-10}{4,-20}\n",
+                Console.WriteLine("{0,-5}{1,-25}{2,-15}{3,-10}{4,20}\n",
                         "#",
                         "Booth Name",
                         "# Products",
@@ -350,7 +353,7 @@ namespace _7_ChallengeSeven_Console
                         formattedName = formattedName.Substring(0, 20) + "...";
                     }
 
-                    Console.WriteLine("{0, -5}{1,-25}{2,-15}{3,-10}{4,-20}",
+                    Console.WriteLine("{0, -5}{1,-25}{2,-15}{3,-10}{4,20:c2}",
                         i,
                         formattedName,
                         booth.Products.Count,

@@ -11,7 +11,7 @@ namespace _7_ChallengeSeven_Repository
         public int PartyID { get; set; }
         public string Purpose { get; set; }
         public DateTime Date { get; set; }
-        public List<Booth>Booths { get; set; }
+        public List<Booth> Booths { get; set; }
 
 
         // Constructors

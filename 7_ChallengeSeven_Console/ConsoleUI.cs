@@ -112,18 +112,20 @@ namespace _7_ChallengeSeven_Console
                 return;
             }
 
-            int remainingTickets = maxGuests;
             Random rng = new Random();
 
             foreach (Booth booth in party.Booths)
             {
+                // Everyone gets one ticket per booth type
+                int remainingTickets = maxGuests;
+
                 if (!(booth is null || booth.Products is null || booth.Products.Count == 0))
                 {
                     foreach(Product product in booth.Products)
                     {
                         if (!(product is null) && remainingTickets > 0)
                         {
-                            int ticketsExchanged = rng.Next(0, remainingTickets);
+                            int ticketsExchanged = Math.Min(remainingTickets, (int)(rng.Next(75, 125) * maxGuests / 100 / booth.Products.Count));
                             remainingTickets -= ticketsExchanged;
                             product.ExchangeTickets(ticketsExchanged);
                         }

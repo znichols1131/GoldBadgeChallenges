@@ -138,9 +138,15 @@ namespace _7_ChallengeSeven_Console
                     for (int i = 0; i < product.Ingredients.Count; i++)
                     {
                         Ingredient ingredient = product.Ingredients[i];
-                        Console.WriteLine("{0,-12}{1, -3}{2,-20}", "", i, ingredient.Name);
+                        Console.WriteLine("{0,-12}{1, -3}{2,-20}", 
+                            "",
+                            $"#{i}", 
+                            String.Format("{0} ({1:c2})", ingredient.Name, ingredient.Cost));
                     }
                 }
+
+                Console.WriteLine("\n{0,-15}{1,-20:n0}", "Total sold:", product.TicketsExchanged());
+                Console.WriteLine("{0,-15}{1,-20:c2}", "Total cost:", product.TotalCost());
 
                 Console.WriteLine("\n" + CONST_DASHES + "\n\nWhat would you like to do?\n" +
                     "1. Update name.\n" +
@@ -161,15 +167,86 @@ namespace _7_ChallengeSeven_Console
                         break;
 
                     case "2":
-
+                        // Add an ingredient
+                        Ingredient newIngredient = AskUser_Ingredient();
+                        if (!(newIngredient is null))
+                        {
+                            bool success = product.AddIngredient(newIngredient);
+                            if (success)
+                            {
+                                Console.WriteLine($"\nIngredient was successfully added. Press any key to continue.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nIngredient could not be added. Press any key to continue.");
+                            }
+                            Console.ReadLine();
+                        }
                         break;
 
                     case "3":
+                        // Update an ingredient
+                        Console.WriteLine("\n" + CONST_DASHES + "\n\nEnter an ingredient number to update.");
+                        string response2 = Console.ReadLine();
+                        int ingredientID;
+
+                        if(response2 != "")
+                        {
+                            try
+                            {
+                                ingredientID = int.Parse(response2.Trim());
+                                Ingredient newIngredient2 = AskUser_Ingredient();
+                                if (!(newIngredient2 is null))
+                                {
+                                    bool success = product.UpdateIngredientAtIndex(ingredientID, newIngredient2);
+                                    if (success)
+                                    {
+                                        Console.WriteLine($"\nIngredient was successfully updated. Press any key to continue.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"\nIngredient could not be updated. Press any key to continue.");
+                                    }
+                                    Console.ReadLine();
+                                }
+                            }
+                            catch
+                            {
+                                PrintErrorMessageForInput(response2);
+                                break;
+                            }
+                        }
 
                         break;
 
                     case "4":
+                        // Remove ingredients
+                        if (product.Ingredients is null || product.Ingredients.Count == 0)
+                        {
+                            Console.WriteLine($"\nWe're sorry, there are no ingredients to delete. Press any key to continue.");
+                            Console.ReadLine();
+                            break;
+                        }
 
+                        List<Ingredient> ingredientsToDelete = AskUser_IngredientsForProduct(product);
+                        if (!(ingredientsToDelete is null || ingredientsToDelete.Count == 0))
+                        {
+                            bool success = true;
+                            foreach (Ingredient ingredient in ingredientsToDelete)
+                            {
+                                success = (success && product.RemoveIngredient(ingredient));
+                            }
+
+                            if (success)
+                            {
+                                Console.WriteLine($"\nAll ingredients were successfully removed. Press any key to continue.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"\nAt least one ingredient could not be removed. Press any key to continue.");
+                            }
+                            Console.ReadLine();
+                        }
                         break;
 
                     case "5":
@@ -258,37 +335,51 @@ namespace _7_ChallengeSeven_Console
 
 
         // Helper methods (if any)
-        private List<Booth> AskUser_BoothsForParty(Party party)
+        private Ingredient AskUser_Ingredient()
         {
-            if (party is null || party.Booths is null || party.Booths.Count == 0)
+            Console.Write("\nStep 1 of 2: ");
+            string name = AskUser_StringInput("Enter the ingredient name:");
+            if (name is null) { return null; }
+
+            Console.Write("\nStep 2 of 2: ");
+            var cost = AskUser_DoubleInput("Enter the cost of the ingredient (in dollars):");
+            if (!cost.HasValue) { return null; }
+
+            Ingredient newIngredient = new Ingredient(name, (double)cost);
+            return newIngredient;
+        }
+
+        private List<Ingredient> AskUser_IngredientsForProduct(Product product)
+        {
+            if (product is null || product.Ingredients is null || product.Ingredients.Count == 0)
             {
                 return null;
             }
 
-            Console.WriteLine("Enter all booth numbers separated by commas:");
-            string boothsStr = Console.ReadLine();
-            if (!ValidateStringResponse(boothsStr, true))
+            Console.WriteLine("\nEnter all ingredient numbers separated by commas:");
+            string ingredientStr = Console.ReadLine();
+            if (!ValidateStringResponse(ingredientStr, true))
             {
-                PrintErrorMessageForInput(boothsStr);
+                PrintErrorMessageForInput(ingredientStr);
                 return null;
             }
-            List<int> boothIDs = SplitStringIntoIDs(boothsStr);
-            if (boothIDs is null || boothIDs.Count == 0)
+            List<int> ingredientIDs = SplitStringIntoIDs(ingredientStr);
+            if (ingredientIDs is null || ingredientIDs.Count == 0)
             {
                 return null;
             }
 
-            List<Booth> parsedBooths = new List<Booth>();
-            foreach (int id in boothIDs)
+            List<Ingredient> parsedIngredients = new List<Ingredient>();
+            foreach (int id in ingredientIDs)
             {
-                Booth newBooth = party.Booths[id];
-                if (!(newBooth is null))
+                Ingredient newIngredient = product.Ingredients[id];
+                if (!(newIngredient is null))
                 {
-                    parsedBooths.Add(newBooth);
+                    parsedIngredients.Add(newIngredient);
                 }
             }
 
-            return parsedBooths;
+            return parsedIngredients;
         }
 
         private void PrintProductsInList(List<Product> listOfProducts)
@@ -299,7 +390,7 @@ namespace _7_ChallengeSeven_Console
             }
             else
             {
-                Console.WriteLine("{0,-5}{1,-25}{2,-15}{3,-10}{4,-20}\n",
+                Console.WriteLine("{0,-5}{1,-25}{2,-15}{3,-10}{4,20}\n",
                         "#",
                         "Product Name",
                         "# Ingredients",
@@ -316,7 +407,7 @@ namespace _7_ChallengeSeven_Console
                         formattedName = formattedName.Substring(0, 20) + "...";
                     }
 
-                    Console.WriteLine("{0, -5}{1,-25}{2,-15}{3,-10}{4,-20}",
+                    Console.WriteLine("{0, -5}{1,-25}{2,-15}{3,-10}{4,20:c2}",
                         i,
                         formattedName,
                         product.Ingredients.Count,
@@ -350,5 +441,7 @@ namespace _7_ChallengeSeven_Console
             Console.ReadLine();
             return;
         }
+
+
     }
 }

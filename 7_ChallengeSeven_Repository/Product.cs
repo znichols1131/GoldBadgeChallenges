@@ -30,7 +30,12 @@ namespace _7_ChallengeSeven_Repository
         public Product Clone()
         {
             Product newProduct = new Product(Name);
-            newProduct.Ingredients = Ingredients;
+
+            foreach (Ingredient i in Ingredients)
+            {
+                newProduct.AddIngredient(i.Clone());
+            }
+
             newProduct.ExchangeTickets(_ticketsExchanged);
             return newProduct;
         }

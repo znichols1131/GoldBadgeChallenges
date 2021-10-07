@@ -136,6 +136,33 @@ namespace _7_ChallengeSeven_Console
             return response;
         }
 
+        public double? AskUser_DoubleInput(string prompt)
+        {
+            if (prompt is null || prompt == "")
+            {
+                return null;
+            }
+
+            Console.WriteLine(prompt);
+            string response = Console.ReadLine();
+            if (!ValidateStringResponse(response, true))
+            {
+                PrintErrorMessageForInput(response);
+                return null;
+            }
+
+            try
+            {
+                return double.Parse(response.Trim('$'));
+            }
+            catch
+            {
+                return null;
+            }
+
+            return null;
+        }
+
         public DateTime? AskUser_DateInput(string prompt)
         {
             if (prompt is null || prompt == "")
