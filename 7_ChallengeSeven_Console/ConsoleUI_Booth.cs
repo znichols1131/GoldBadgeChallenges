@@ -47,8 +47,10 @@ namespace _7_ChallengeSeven_Console
             }
 
             // Go into update mode for that new booth
+            GoBack();
+            GoToNextPage("Viewing Specific Booth");
             Menu_ViewOrUpdate_Specific(_party.Booths.Count - 1);
-
+            GoBack();
         }
 
         public Booth AskUserForBooth()
@@ -73,7 +75,7 @@ namespace _7_ChallengeSeven_Console
 
                 PrintBoothsInList(_party.Booths);
 
-                Console.WriteLine("\n" + _dashes + "\n\nEnter a booth number to view booth " +
+                Console.WriteLine("\n" + CONST_DASHES + "\n\nEnter a booth number to view booth " +
                     "or press enter to return to the main menu:\n");
                 string response = Console.ReadLine();
 
@@ -86,7 +88,9 @@ namespace _7_ChallengeSeven_Console
                         try
                         {
                             int boothID = int.Parse(response.Trim());
+                            GoToNextPage("Viewing Specific Booth");
                             Menu_ViewOrUpdate_Specific(boothID);
+                            GoBack();
                         }
                         catch
                         {
@@ -138,7 +142,7 @@ namespace _7_ChallengeSeven_Console
                     }
                 }
 
-                Console.WriteLine("\n" + _dashes + "\n\nWhat would you like to do?\n" +
+                Console.WriteLine("\n" + CONST_DASHES + "\n\nWhat would you like to do?\n" +
                     "1. Update name.\n" +
                     "2. Add a product.\n" +
                     "3. View existing products.\n" +
@@ -158,14 +162,18 @@ namespace _7_ChallengeSeven_Console
 
                     case "2":
                         // Add product
+                        GoToNextPage("Creating Product");
                         ConsoleUI_Product consoleUI_Product = new ConsoleUI_Product(booth);
                         consoleUI_Product.Menu_CreateProduct();
+                        GoBack();
                         break;
 
                     case "3":
                         // See products
+                        GoToNextPage("Viewing Existing Products");
                         ConsoleUI_Product consoleUI_Product2 = new ConsoleUI_Product(booth);
                         consoleUI_Product2.Menu_ViewOrUpdate_All();
+                        GoBack();
                         break;
 
                     case "4":
@@ -220,7 +228,7 @@ namespace _7_ChallengeSeven_Console
 
                 PrintBoothsInList(_party.Booths);
 
-                Console.WriteLine("\n" + _dashes + "\n\nEnter booth numbers to delete separated by commas " +
+                Console.WriteLine("\n" + CONST_DASHES + "\n\nEnter booth numbers to delete separated by commas " +
                     "or press enter to return to the main menu:\n");
                 string response = Console.ReadLine();
 

@@ -47,8 +47,10 @@ namespace _7_ChallengeSeven_Console
             }
 
             // Go into update mode for that new product
+            GoBack();
+            GoToNextPage("Viewing Specific Product");
             Menu_ViewOrUpdate_Specific(_booth.Products.Count - 1);
-
+            GoBack();
         }
 
         public Product AskUserForProduct()
@@ -73,7 +75,7 @@ namespace _7_ChallengeSeven_Console
 
                 PrintProductsInList(_booth.Products);
 
-                Console.WriteLine("\n" + _dashes + "\n\nEnter a product number to view product " +
+                Console.WriteLine("\n" + CONST_DASHES + "\n\nEnter a product number to view product " +
                     "or press enter to return to the main menu:\n");
                 string response = Console.ReadLine();
 
@@ -86,7 +88,9 @@ namespace _7_ChallengeSeven_Console
                         try
                         {
                             int productID = int.Parse(response.Trim());
+                            GoToNextPage("Viewing Specific Product");
                             Menu_ViewOrUpdate_Specific(productID);
+                            GoBack();
                         }
                         catch
                         {
@@ -138,7 +142,7 @@ namespace _7_ChallengeSeven_Console
                     }
                 }
 
-                Console.WriteLine("\n" + _dashes + "\n\nWhat would you like to do?\n" +
+                Console.WriteLine("\n" + CONST_DASHES + "\n\nWhat would you like to do?\n" +
                     "1. Update name.\n" +
                     "2. Add an ingredient.\n" +
                     "3. Update an ingredient.\n" +
@@ -190,7 +194,7 @@ namespace _7_ChallengeSeven_Console
 
                 PrintProductsInList(_booth.Products);
 
-                Console.WriteLine("\n" + _dashes + "\n\nEnter product numbers to delete separated by commas " +
+                Console.WriteLine("\n" + CONST_DASHES + "\n\nEnter product numbers to delete separated by commas " +
                     "or press enter to return to the main menu:\n");
                 string response = Console.ReadLine();
 

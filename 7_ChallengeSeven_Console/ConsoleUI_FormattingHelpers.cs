@@ -8,9 +8,10 @@ namespace _7_ChallengeSeven_Console
 {
     public abstract class ConsoleUI_FormattingHelpers
     {
-        private string _dashes = "------------------------------";
-        private string _dateFormat = "MMM dd, yyyy";
-        public List<string> NavigationStrings = new List<string>();
+        public string CONST_DASHES = "------------------------------";
+        public string CONST_DATE_FORMAT = "MMM dd, yyyy";
+        private static List<string> _navigationPages = new List<string>();   // I don't want a new instance with every ConsoleUI_ class
+
 
         // Helper methods (if any)
         public void PrintLogo()
@@ -27,7 +28,12 @@ namespace _7_ChallengeSeven_Console
 
         public void PrintTitle(string title)
         {
-            Console.WriteLine(title + "\n\n" + _dashes + "\n");
+            string navStr = GetNavigationString();
+            if(!(navStr is null || navStr == "Home"))
+            {
+                Console.WriteLine(GetNavigationString() + "\n\n");
+            }
+            Console.WriteLine(title + "\n\n" + CONST_DASHES + "\n");
         }
 
         public void PrintErrorMessageForInput(string input)
@@ -152,6 +158,74 @@ namespace _7_ChallengeSeven_Console
 
 
         // Navigation bar methods
-        
+        public void GoToNextPage(string newPageName)
+        {
+            if(newPageName is null)
+            {
+                return;
+            }
+
+            _navigationPages.Add(newPageName);
+            return;
+        }
+
+        public void GoBack()
+        {
+            if (_navigationPages is null || _navigationPages.Count == 0)
+            {
+                return;
+            }
+
+            // Remove latest page
+            _navigationPages.RemoveAt(_navigationPages.Count - 1);
+            return;
+        }
+
+        public string GetNavigationString()
+        {
+            if (_navigationPages is null)
+            {
+                return null;
+            }
+            else if(_navigationPages.Count == 0)
+            {
+                _navigationPages.Add("Home");
+                return _navigationPages[0];
+            }
+
+            string formattedOutput = _navigationPages[_navigationPages.Count - 1];
+            
+            if(_navigationPages.Count == 1)
+            {
+                return formattedOutput;
+            }
+
+            int maxLength = 75;
+            for(int i = _navigationPages.Count-2; i>=0; i--)
+            {
+                try
+                {
+                    if(formattedOutput.Length + 3 + _navigationPages[i].Length <= maxLength)
+                    {
+                        formattedOutput = $"{_navigationPages[i]} > {formattedOutput}";
+                    }else
+                    {
+                        formattedOutput = $"... > {formattedOutput}";
+                        return formattedOutput;
+                    }
+                }
+                catch
+                {
+                    return formattedOutput;
+                }
+            }
+
+            if(formattedOutput == "")
+            {
+                return null;
+            }
+
+            return formattedOutput;
+        }
     }
 }

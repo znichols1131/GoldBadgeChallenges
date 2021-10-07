@@ -154,13 +154,19 @@ namespace _7_ChallengeSeven_Console
                 switch (response)
                 {
                     case "1":
+                        GoToNextPage("Create Party");
                         _consoleUI_Party.Menu_CreateParty();
+                        GoBack();
                         break;
                     case "2":
+                        GoToNextPage("View Existing Parties");
                         _consoleUI_Party.Menu_ViewOrUpdate_All();
+                        GoBack();
                         break;
                     case "3":
+                        GoToNextPage("Delete Party");
                         _consoleUI_Party.Menu_Delete();
+                        GoBack();
                         break;
                     case "4":
                         // Quit
