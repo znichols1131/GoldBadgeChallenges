@@ -153,7 +153,9 @@ namespace _7_ChallengeSeven_Console
                     "2. Add an ingredient.\n" +
                     "3. Update an ingredient.\n" +
                     "4. Remove ingredients.\n" +
-                    "5. Return to previous menu.\n");
+                    "5. Add tickets (sales).\n" +
+                    "6. Reset ticket count.\n" +
+                    "7. Return to previous menu.\n");
                 string response = Console.ReadLine();
 
                 switch (response)
@@ -250,6 +252,22 @@ namespace _7_ChallengeSeven_Console
                         break;
 
                     case "5":
+                        // Add ticket count
+                        var ticketsToAdd = AskUser_IntegerInput("\nEnter the number of tickets to add:");
+                        if (!ticketsToAdd.HasValue) { break; }
+                        product.ExchangeTickets((int)ticketsToAdd);
+                        Console.WriteLine($"\nThe ticket count has been updated. Press any key to continue.");
+                        Console.ReadLine();
+                        break;
+
+                    case "6":
+                        // Reset ticket count
+                        product.ResetTickets();
+                        Console.WriteLine($"\nThe ticket count has been reset. Press any key to continue.");
+                        Console.ReadLine();
+                        break;
+
+                    case "7":
                         // Return to previous menu
                         return;
                     default:

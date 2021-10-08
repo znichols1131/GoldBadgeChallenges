@@ -103,5 +103,45 @@ namespace _7_ChallengeSeven_Repository
         }
 
         // Helper methods (if any)
+        public void RandomizeAllParties(int maxGuests)
+        {
+            if(_listOfParties is null || _listOfParties.Count == 0)
+            {
+                return;
+            }
+
+            Random rng = new Random();
+            int lowerBound = 50;      // percent of the "fair number" of tickets
+            int upperBound = 150;     // percent of the "fair number" of tickets
+
+            foreach (Party party in _listOfParties)
+            {
+                if(!(party.Booths is null || party.Booths.Count == 0))
+                {
+                    foreach(Booth booth in party.Booths)
+                    {                       
+                        if(!(booth.Products is null || booth.Products.Count == 0))
+                        {
+                            // Every guest gets one ticket per booth
+                            int remainingTickets = maxGuests;
+                            double fairProbability = 1.0d / (double)booth.Products.Count;     // decimal value (not percent)
+
+                            foreach (Product product in booth.Products)
+                            {
+                                if(remainingTickets > 0)
+                                {
+                                    // Randomize the number of tickets given to each product
+                                    int ticketsExchanged = (int)(remainingTickets * ((double)rng.Next(lowerBound, upperBound) / 100.0d * fairProbability));
+                                    ticketsExchanged = Math.Min(remainingTickets, ticketsExchanged);
+                                    product.ResetTickets();
+                                    product.ExchangeTickets(ticketsExchanged);
+                                    remainingTickets -= ticketsExchanged;
+                                }                               
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

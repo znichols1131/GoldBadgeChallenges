@@ -136,6 +136,34 @@ namespace _7_ChallengeSeven_Console
             return response;
         }
 
+        public int? AskUser_IntegerInput(string prompt)
+        {
+            if (prompt is null || prompt == "")
+            {
+                return null;
+            }
+
+            Console.WriteLine(prompt);
+            string response = Console.ReadLine();
+            if (!ValidateStringResponse(response, true))
+            {
+                PrintErrorMessageForInput(response);
+                return null;
+            }
+
+            try
+            {
+                return int.Parse(response);
+            }
+            catch
+            {
+                PrintErrorMessageForInput(response);
+                return null;
+            }
+
+            return null;
+        }
+
         public double? AskUser_DoubleInput(string prompt)
         {
             if (prompt is null || prompt == "")
@@ -157,6 +185,7 @@ namespace _7_ChallengeSeven_Console
             }
             catch
             {
+                PrintErrorMessageForInput(response);
                 return null;
             }
 

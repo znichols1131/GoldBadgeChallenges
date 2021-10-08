@@ -85,55 +85,25 @@ namespace _7_ChallengeSeven_Console
             Party zachParty = new Party("Zach's birthday", DateTime.Parse("09/07/2020"));
             zachParty.Booths.Add(hamburgerBooth.Clone());
             zachParty.Booths.Add(treatsBooth.Clone());
-            //RandomizeParty(zachParty, 500);
             _partyRepo.CreateParty(zachParty);
 
             Party bruceParty = new Party("Bruce's retirement", DateTime.Parse("01/14/2021"));
             bruceParty.Booths.Add(hamburgerBooth.Clone());
             bruceParty.Booths.Add(treatsBooth.Clone()); 
-            //RandomizeParty(bruceParty, 500);
             _partyRepo.CreateParty(bruceParty);
 
             Party beeslyParty = new Party("Beesly's adoption", DateTime.Parse("02/07/2021"));
             beeslyParty.Booths.Add(hamburgerBooth.Clone().Clone());
             beeslyParty.Booths.Add(treatsBooth.Clone().Clone()); 
-            //RandomizeParty(beeslyParty, 500);
             _partyRepo.CreateParty(beeslyParty);
+
+            // Randomize the number of products sold
+            _partyRepo.RandomizeAllParties(500);
         }
 
-        public void RandomizeParty(Party party, int maxGuests)
+        public void RandomizeParties()
         {
-            // Randomize the data in the dummy data for testing purposes
-
-            if(party is null || party.Booths is null || party.Booths.Count == 0 || maxGuests < 0)
-            {
-                return;
-            }
-
-            Random rng = new Random();
-
-            foreach (Booth booth in party.Booths)
-            {
-                // Everyone gets one ticket per booth type
-                int remainingTickets = maxGuests;
-
-                if (!(booth is null || booth.Products is null || booth.Products.Count == 0))
-                {
-                    foreach(Product product in booth.Products)
-                    {
-                        if (!(product is null) && remainingTickets > 0)
-                        {
-                            product.ResetTickets();
-                            double percentOfRemaining = ((double)rng.Next(50, 100) / 100.0d / (double)booth.Products.Count);
-                            int ticketsExchanged = Math.Min(remainingTickets, (int)(maxGuests * percentOfRemaining));
-                            remainingTickets -= ticketsExchanged;
-                            product.ExchangeTickets(ticketsExchanged);
-                        }
-                    }
-
-                    
-                }
-            }
+            _partyRepo.RandomizeAllParties(500);
         }
 
         // Main menu
@@ -177,18 +147,8 @@ namespace _7_ChallengeSeven_Console
                         Environment.Exit(0);
                         return;
                     case "5":
-                        if(!(_partyRepo.GetAllParties() is null))
-                        {
-                            foreach (Party p in _partyRepo.GetAllParties())
-                            {
-                                RandomizeParty(p, 500);
-                            }
-                        }
-
-                        foreach(Party p in _partyRepo.GetAllParties())
-                        {
-                            RandomizeParty(p, 500);
-                        }
+                        // Randomize parties for testing purposes
+                        RandomizeParties();
                         Console.WriteLine("\nParties successfully randomized. Press any key to continue.");
                         Console.ReadLine();
                         break;

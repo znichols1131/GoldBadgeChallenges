@@ -158,7 +158,7 @@ namespace _6_ChallengeSix_UnitTests
         }
 
         [TestMethod]
-        public void DeleteCarForID_ItemExists_ReturnTrue()
+        public void DeleteCarForID_CarExists_ReturnTrue()
         {
             // Arrange
             int carID = 0;
